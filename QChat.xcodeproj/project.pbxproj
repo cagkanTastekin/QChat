@@ -12,9 +12,13 @@
 		3E4479D82369766900F93709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479D62369766900F93709 /* Main.storyboard */; };
 		3E4479DA2369766900F93709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479D92369766900F93709 /* Assets.xcassets */; };
 		3E4479DD2369766900F93709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479DB2369766900F93709 /* LaunchScreen.storyboard */; };
+		3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479EB236978DF00F93709 /* SignInViewCont.swift */; };
+		3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479ED2369791500F93709 /* SignUpViewCont.swift */; };
+		CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9830C7745211BC4F346B78DE /* Pods_QChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.debug.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.debug.xcconfig"; sourceTree = "<group>"; };
 		3E4479CD2369766900F93709 /* QChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4479D02369766900F93709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E4479D22369766900F93709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +26,10 @@
 		3E4479D92369766900F93709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E4479DC2369766900F93709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E4479DE2369766900F93709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4479EB236978DF00F93709 /* SignInViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewCont.swift; path = QChat/Controller/SignInViewCont.swift; sourceTree = SOURCE_ROOT; };
+		3E4479ED2369791500F93709 /* SignUpViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewCont.swift; path = QChat/Controller/SignUpViewCont.swift; sourceTree = SOURCE_ROOT; };
+		9830C7745211BC4F346B78DE /* Pods_QChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.release.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				3E4479CF2369766900F93709 /* QChat */,
 				3E4479CE2369766900F93709 /* Products */,
+				A4623017490D9A9BBF315BDC /* Pods */,
+				E4290A1E4FA4968C30B757F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +97,8 @@
 		3E4479E62369768D00F93709 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E4479EB236978DF00F93709 /* SignInViewCont.swift */,
+				3E4479ED2369791500F93709 /* SignUpViewCont.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -120,6 +133,24 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A4623017490D9A9BBF315BDC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */,
+				DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E4290A1E4FA4968C30B757F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9830C7745211BC4F346B78DE /* Pods_QChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E4479E12369766900F93709 /* Build configuration list for PBXNativeTarget "QChat" */;
 			buildPhases = (
+				DB36840A83FBCA461D121014 /* [CP] Check Pods Manifest.lock */,
 				3E4479C92369766900F93709 /* Sources */,
 				3E4479CA2369766900F93709 /* Frameworks */,
 				3E4479CB2369766900F93709 /* Resources */,
+				77930D4B308FBB3762A72624 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,11 +219,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		77930D4B308FBB3762A72624 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QChat/Pods-QChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QChat/Pods-QChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QChat/Pods-QChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB36840A83FBCA461D121014 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3E4479C92369766900F93709 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */,
+				3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */,
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,
 				3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */,
 			);
@@ -334,6 +411,7 @@
 		};
 		3E4479E22369766900F93709 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -352,6 +430,7 @@
 		};
 		3E4479E32369766900F93709 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
