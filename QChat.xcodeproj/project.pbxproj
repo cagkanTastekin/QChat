@@ -19,6 +19,7 @@
 		3E4479F423698A9E00F93709 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F323698A9E00F93709 /* HelperFunctions.swift */; };
 		3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F523698AFB00F93709 /* CollectionReference.swift */; };
 		3E4479F823698B1500F93709 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F723698B1500F93709 /* Constants.swift */; };
+		3E90F7C22369B68C00BB0C3F /* RegistrationViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */; };
 		CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9830C7745211BC4F346B78DE /* Pods_QChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		3E4479F323698A9E00F93709 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		3E4479F523698AFB00F93709 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 		3E4479F723698B1500F93709 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewCont.swift; sourceTree = "<group>"; };
 		9830C7745211BC4F346B78DE /* Pods_QChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.release.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 			children = (
 				3E4479EB236978DF00F93709 /* SignInViewCont.swift */,
 				3E4479ED2369791500F93709 /* SignUpViewCont.swift */,
+				3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
 				3E4479F223698A8300F93709 /* FUser.swift in Sources */,
+				3E90F7C22369B68C00BB0C3F /* RegistrationViewCont.swift in Sources */,
 				3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */,
 				3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */,
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,

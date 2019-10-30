@@ -281,7 +281,7 @@ class FUser {
 
 func saveUserToFirestore(fUser: FUser) {
     reference(collectionReference: .User).document(fUser.objectId).setData(userDictionaryFrom(user: fUser) as! [String : Any]) { (error) in
-        print("error is \(error!.localizedDescription)")
+       // print(error!.localizedDescription)
     }
 }
 

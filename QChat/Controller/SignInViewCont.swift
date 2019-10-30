@@ -6,6 +6,8 @@
 //  Copyright © 2019. ÇağkanTaştekin. All rights reserved.
 //
 
+// Storyboard ID & Restoration ID --> SignInVC
+
 import UIKit
 import ProgressHUD
 
@@ -20,6 +22,9 @@ class SignInViewCont: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
+    
+    var email:String = ""
+    var password:String = ""
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -70,8 +75,8 @@ class SignInViewCont: UIViewController {
     
     @objc func signInUser(){
         ProgressHUD.show("Sing In...")
-        let email = txtEmail.text!
-        let password = txtPassword.text!
+        email = txtEmail.text!
+        password = txtPassword.text!
         
         FUser.loginUserWith(email: email, password: password){ (error)in
             

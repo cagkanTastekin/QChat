@@ -6,6 +6,8 @@
 //  Copyright © 2019. ÇağkanTaştekin. All rights reserved.
 //
 
+// Storyboard ID & Restoration ID --> SignUpVC
+
 import UIKit
 import ProgressHUD
 
@@ -22,6 +24,10 @@ class SignUpViewCont: UIViewController {
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     
+    var email:String = ""
+    var password:String = ""
+    var repeatPassword:String = ""
+    
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +40,14 @@ class SignUpViewCont: UIViewController {
         
         if txtEmail.text != "" && txtPassword.text != "" && txtRepeatPassword.text != ""{
             if txtPassword.text == txtRepeatPassword.text {
-               registerUser()
+                let mail = String(txtPassword.text!)
+                if mail.count < 6{
+                    print("az")
+                    ProgressHUD.showError("Password must to be minimum 6 characters")
+                } else {
+                    registerNewUser()
+                    cleanTxtFields()
+                }
             } else {
                 ProgressHUD.showError("OOPS!! \n Passwords doesn't match!")
             }
@@ -58,7 +71,7 @@ class SignUpViewCont: UIViewController {
     @IBAction func cancel(_ sender: UIButton) {
         cleanTxtFields()
         dismissKeyboard()
-        goLoginView()
+        goSignInView()
     }
     
     @IBAction func backgroundHelper(_ sender: UIButton) {
@@ -72,7 +85,7 @@ class SignUpViewCont: UIViewController {
         txtRepeatPassword.text = ""
     }
     
-    @objc func goLoginView(){
+    @objc func goSignInView(){
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -86,8 +99,15 @@ class SignUpViewCont: UIViewController {
        lblTag.text = "Sign Up"
     }
     
-    @objc func registerUser(){
-
+    @objc func registerNewUser(){
+        email = txtEmail.text!
+        password = txtPassword.text!
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let vc = main.instantiateViewController(withIdentifier: "RegistrationVC") as? RegistrationViewCont
+        vc?.email = email
+        vc?.password = password
+        self.present(vc!, animated: true, completion: nil)
     }
     
 }
