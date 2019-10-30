@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,11 @@
 		3E4479DD2369766900F93709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479DB2369766900F93709 /* LaunchScreen.storyboard */; };
 		3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479EB236978DF00F93709 /* SignInViewCont.swift */; };
 		3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479ED2369791500F93709 /* SignUpViewCont.swift */; };
+		3E4479F023698A0F00F93709 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479EF23698A0F00F93709 /* GoogleService-Info.plist */; };
+		3E4479F223698A8300F93709 /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F123698A8300F93709 /* FUser.swift */; };
+		3E4479F423698A9E00F93709 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F323698A9E00F93709 /* HelperFunctions.swift */; };
+		3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F523698AFB00F93709 /* CollectionReference.swift */; };
+		3E4479F823698B1500F93709 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F723698B1500F93709 /* Constants.swift */; };
 		CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9830C7745211BC4F346B78DE /* Pods_QChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +33,11 @@
 		3E4479DE2369766900F93709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4479EB236978DF00F93709 /* SignInViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewCont.swift; path = QChat/Controller/SignInViewCont.swift; sourceTree = SOURCE_ROOT; };
 		3E4479ED2369791500F93709 /* SignUpViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewCont.swift; path = QChat/Controller/SignUpViewCont.swift; sourceTree = SOURCE_ROOT; };
+		3E4479EF23698A0F00F93709 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3E4479F123698A8300F93709 /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
+		3E4479F323698A9E00F93709 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		3E4479F523698AFB00F93709 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
+		3E4479F723698B1500F93709 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9830C7745211BC4F346B78DE /* Pods_QChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.release.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +82,7 @@
 				3E4479E52369768700F93709 /* View */,
 				3E4479E62369768D00F93709 /* Controller */,
 				3E4479DE2369766900F93709 /* Info.plist */,
+				3E4479EF23698A0F00F93709 /* GoogleService-Info.plist */,
 			);
 			path = QChat;
 			sourceTree = "<group>";
@@ -79,6 +90,7 @@
 		3E4479E42369768100F93709 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				3E4479F123698A8300F93709 /* FUser.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -106,6 +118,9 @@
 		3E4479E72369769400F93709 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3E4479F723698B1500F93709 /* Constants.swift */,
+				3E4479F523698AFB00F93709 /* CollectionReference.swift */,
+				3E4479F323698A9E00F93709 /* HelperFunctions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -139,7 +154,6 @@
 				39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */,
 				DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -212,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4479DD2369766900F93709 /* LaunchScreen.storyboard in Resources */,
+				3E4479F023698A0F00F93709 /* GoogleService-Info.plist in Resources */,
 				3E4479DA2369766900F93709 /* Assets.xcassets in Resources */,
 				3E4479D82369766900F93709 /* Main.storyboard in Resources */,
 			);
@@ -266,10 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
+				3E4479F223698A8300F93709 /* FUser.swift in Sources */,
 				3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */,
 				3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */,
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,
 				3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */,
+				3E4479F423698A9E00F93709 /* HelperFunctions.swift in Sources */,
+				3E4479F823698B1500F93709 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
