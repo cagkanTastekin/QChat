@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0C1050236B308F00931915 /* SettingsTableViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */; };
+		3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2334236AC91C00166FF4 /* DateFormatter.swift */; };
+		3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */; };
 		3E4479D12369766900F93709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D02369766900F93709 /* AppDelegate.swift */; };
 		3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D22369766900F93709 /* SceneDelegate.swift */; };
 		3E4479D82369766900F93709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479D62369766900F93709 /* Main.storyboard */; };
@@ -16,7 +19,6 @@
 		3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479ED2369791500F93709 /* SignUpViewCont.swift */; };
 		3E4479F023698A0F00F93709 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479EF23698A0F00F93709 /* GoogleService-Info.plist */; };
 		3E4479F223698A8300F93709 /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F123698A8300F93709 /* FUser.swift */; };
-		3E4479F423698A9E00F93709 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F323698A9E00F93709 /* HelperFunctions.swift */; };
 		3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F523698AFB00F93709 /* CollectionReference.swift */; };
 		3E4479F823698B1500F93709 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479F723698B1500F93709 /* Constants.swift */; };
 		3E90F7C22369B68C00BB0C3F /* RegistrationViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */; };
@@ -25,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.debug.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.debug.xcconfig"; sourceTree = "<group>"; };
+		3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCont.swift; sourceTree = "<group>"; };
+		3E1F2334236AC91C00166FF4 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInitilazer.swift; sourceTree = "<group>"; };
 		3E4479CD2369766900F93709 /* QChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4479D02369766900F93709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E4479D22369766900F93709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +41,6 @@
 		3E4479ED2369791500F93709 /* SignUpViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewCont.swift; path = QChat/Controller/SignUpViewCont.swift; sourceTree = SOURCE_ROOT; };
 		3E4479EF23698A0F00F93709 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E4479F123698A8300F93709 /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
-		3E4479F323698A9E00F93709 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		3E4479F523698AFB00F93709 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 		3E4479F723698B1500F93709 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewCont.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				3E4479EB236978DF00F93709 /* SignInViewCont.swift */,
 				3E4479ED2369791500F93709 /* SignUpViewCont.swift */,
 				3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */,
+				3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,7 +128,8 @@
 			children = (
 				3E4479F723698B1500F93709 /* Constants.swift */,
 				3E4479F523698AFB00F93709 /* CollectionReference.swift */,
-				3E4479F323698A9E00F93709 /* HelperFunctions.swift */,
+				3E1F2334236AC91C00166FF4 /* DateFormatter.swift */,
+				3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -284,14 +290,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */,
 				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
+				3E0C1050236B308F00931915 /* SettingsTableViewCont.swift in Sources */,
 				3E4479F223698A8300F93709 /* FUser.swift in Sources */,
 				3E90F7C22369B68C00BB0C3F /* RegistrationViewCont.swift in Sources */,
 				3E4479EE2369791500F93709 /* SignUpViewCont.swift in Sources */,
+				3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */,
 				3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */,
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,
 				3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */,
-				3E4479F423698A9E00F93709 /* HelperFunctions.swift in Sources */,
 				3E4479F823698B1500F93709 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A76SYFKB28;
 				INFOPLIST_FILE = QChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A76SYFKB28;
 				INFOPLIST_FILE = QChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

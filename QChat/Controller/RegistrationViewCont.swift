@@ -52,7 +52,7 @@ class RegistrationViewCont: UIViewController {
     
     @IBAction func finishRegistration(_ sender: UIButton) {
         dismissKeyboard()
-        //cleanAvatarImage()
+        cleanAvatarImage()
         
         ProgressHUD.show("Registering...")
         
@@ -69,11 +69,9 @@ class RegistrationViewCont: UIViewController {
             phone = txtPhone.text!
         
             FUser.registerUserWith(email: email, password: password, firstName: name, lastName: surname) { (error) in
-                
                 if error != nil {
-                    
-                    ProgressHUD.showError("badly formatted e-main \nplease check email address")
-                    
+                    ProgressHUD.showError("badly formatted e-mail \nplease check e-mail address")
+                    self.goSignUpView()
                     return
                 }
                 self.registerUser()
@@ -82,8 +80,7 @@ class RegistrationViewCont: UIViewController {
         } else {
             ProgressHUD.showError("All fields are required!")
         }
-        
-        //cleanTxtFields()
+        cleanTxtFields()
     }
     
     @IBAction func backgroundHelper(_ sender: UIButton) {
@@ -127,7 +124,7 @@ class RegistrationViewCont: UIViewController {
                                            kCOUNTRY : country,
                                            kCITY : city,
                                            kPHONE : phone] as [String : Any]
-        print(avatarImage?.description as Any)
+        
         if avatarImage?.images == nil {
             imageFromInitials(firstName: name, lastName: surname){(avatarInitials) in
                 let avatarIMG = avatarInitials.jpegData(compressionQuality: 0.7)
@@ -155,10 +152,20 @@ class RegistrationViewCont: UIViewController {
                 return
             }
             ProgressHUD.dismiss()
-            // go to app
-            
-            
+            self.goToApp()
         }
+    }
+    
+    @objc func goToApp(){
+        ProgressHUD.dismiss()
+        cleanTxtFields()
+        dismissKeyboard()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUSER_DID_LOGIN_NOTIFICATIONS), object: nil, userInfo: [kUSERID : FUser.currentId()])
+        
+        let mainAppView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "mainApplication") as! UITabBarController
+        mainAppView.modalPresentationStyle = .fullScreen
+        self.present(mainAppView, animated: true, completion: nil)
     }
 
 }

@@ -61,6 +61,7 @@ class SignInViewCont: UIViewController {
     @objc func goSignUpVC(){
         let main = UIStoryboard(name: "Main", bundle: nil)
         let signUpView = main.instantiateViewController(withIdentifier: "SignUpVC")
+        signUpView.modalPresentationStyle = .fullScreen
         self.present(signUpView, animated: true, completion: nil)
     }
     
@@ -99,7 +100,12 @@ class SignInViewCont: UIViewController {
         ProgressHUD.dismiss()
         cleanTxtFields()
         dismissKeyboard()
-        // present app here
-    }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUSER_DID_LOGIN_NOTIFICATIONS), object: nil, userInfo: [kUSERID : FUser.currentId()])
+        
+        let mainAppView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "mainApplication") as! UITabBarController
+        mainAppView.modalPresentationStyle = .fullScreen
+        self.present(mainAppView, animated: true, completion: nil)
+     }
 
 }

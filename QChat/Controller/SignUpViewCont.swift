@@ -104,10 +104,11 @@ class SignUpViewCont: UIViewController {
         password = txtPassword.text!
         
         let main = UIStoryboard(name: "Main", bundle: nil)
-        let vc = main.instantiateViewController(withIdentifier: "RegistrationVC") as? RegistrationViewCont
-        vc?.email = email
-        vc?.password = password
-        self.present(vc!, animated: true, completion: nil)
+        let registrationView = main.instantiateViewController(withIdentifier: "RegistrationVC") as? RegistrationViewCont
+        registrationView?.email = email
+        registrationView?.password = password
+        registrationView?.modalPresentationStyle = .fullScreen
+        self.present(registrationView!, animated: true, completion: nil)
     }
     
 }
