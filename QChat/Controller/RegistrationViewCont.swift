@@ -10,6 +10,7 @@
 
 import UIKit
 import ProgressHUD
+import MaterialTextField
 
 class RegistrationViewCont: UIViewController {
 
@@ -20,11 +21,11 @@ class RegistrationViewCont: UIViewController {
     @IBOutlet weak var imgBackground: UIImageView!
     @IBOutlet weak var btnBackground: UIButton!
     @IBOutlet weak var imgAvatar: UIImageView!
-    @IBOutlet weak var txtName: UITextField!
-    @IBOutlet weak var txtSurname: UITextField!
-    @IBOutlet weak var txtCountry: UITextField!
-    @IBOutlet weak var txtCity: UITextField!
-    @IBOutlet weak var txtPhone: UITextField!
+    @IBOutlet weak var txtName: MFTextField!
+    @IBOutlet weak var txtSurname: MFTextField!
+    @IBOutlet weak var txtCountry: MFTextField!
+    @IBOutlet weak var txtCity: MFTextField!
+    @IBOutlet weak var txtPhone: MFTextField!
     
     var email:String!
     var password:String!
@@ -43,6 +44,7 @@ class RegistrationViewCont: UIViewController {
     }
     
     // MARK: IBActions
+    // Cancel action
     @IBAction func cancelRegistration(_ sender: UIButton) {
         dismissKeyboard()
         cleanTxtFields()
@@ -50,6 +52,7 @@ class RegistrationViewCont: UIViewController {
         goSignUpView()
     }
     
+    // Register action
     @IBAction func finishRegistration(_ sender: UIButton) {
         dismissKeyboard()
         cleanAvatarImage()
@@ -83,18 +86,31 @@ class RegistrationViewCont: UIViewController {
         cleanTxtFields()
     }
     
+    // Background helper action
     @IBAction func backgroundHelper(_ sender: UIButton) {
         dismissKeyboard()
     }
     
     // MARK: HelperFunctions
+    // UI items
     func viewItems(){
-       imgBackground.image = UIImage(named: "LoginBackground")
-       imgBackground.alpha = 0.3
-       imgAvatar.image = UIImage(named: "avatarPlaceholder")
-       lblTag.text = "Profile"
+        imgBackground.image = UIImage(named: "loginBackground")
+        imgBackground.alpha = 0.1
+        imgAvatar.image = UIImage(named: "avatarPlaceholder")
+        lblTag.text = "Profile"
+        
+        let personImage = UIImage(named: "person")
+        addLeftImage(txtField: txtName, andImage: personImage!)
+        addLeftImage(txtField: txtSurname, andImage: personImage!)
+        let countryImage = UIImage(named: "location")
+        addLeftImage(txtField: txtCountry, andImage: countryImage!)
+        addLeftImage(txtField: txtCity, andImage: countryImage!)
+        let phoneImage = UIImage(named: "phone")
+        addLeftImage(txtField: txtPhone, andImage: phoneImage!)
+        
     }
     
+    // Clean text fields
     @objc func cleanTxtFields(){
         txtName.text = ""
         txtSurname.text = ""
@@ -103,18 +119,22 @@ class RegistrationViewCont: UIViewController {
         txtPhone.text = ""
     }
     
+    // Clean avatar
     @objc func cleanAvatarImage(){
         imgAvatar.image = UIImage(named: "avatarPlaceHolder")
     }
     
+    // Dismiss keyboard
     @objc func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
+    // Go back
     @objc func goSignUpView(){
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Register user. Creating fullname, dictionary, avatar image and finishRegistration()
     @objc func registerUser(){
         
         let fullName = name + " " + surname
@@ -142,8 +162,9 @@ class RegistrationViewCont: UIViewController {
         }
     }
     
+    // Finish registration
     @objc func finishRegistration(withValues: [String : Any])  {
-        updateCurrentUserInFirestore(withValues: withValues) { (error) in
+            updateCurrentUserInFirestore(withValues: withValues) { (error) in
             
             if error != nil {
                 DispatchQueue.main.async {
@@ -156,6 +177,7 @@ class RegistrationViewCont: UIViewController {
         }
     }
     
+    // Go to application
     @objc func goToApp(){
         ProgressHUD.dismiss()
         cleanTxtFields()
@@ -166,6 +188,14 @@ class RegistrationViewCont: UIViewController {
         let mainAppView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "mainApplication") as! UITabBarController
         mainAppView.modalPresentationStyle = .fullScreen
         self.present(mainAppView, animated: true, completion: nil)
+    }
+    
+    // Add left image for textfields.
+    func addLeftImage(txtField: MFTextField, andImage img:UIImage){
+        let leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.width))
+        leftImageView.image = img
+        txtField.leftView = leftImageView
+        txtField.leftViewMode = .always
     }
 
 }

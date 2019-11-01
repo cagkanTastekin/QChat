@@ -10,6 +10,7 @@
 
 import UIKit
 import ProgressHUD
+import MaterialTextField
 
 class SignInViewCont: UIViewController {
 
@@ -18,8 +19,8 @@ class SignInViewCont: UIViewController {
     @IBOutlet weak var btnBackground: UIButton!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var lblTag: UILabel!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtEmail: MFTextField!
+    @IBOutlet weak var txtPassword: MFTextField!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     
@@ -33,6 +34,7 @@ class SignInViewCont: UIViewController {
     }
     
     // MARK: IBActions
+    // Sign in action
     @IBAction func signIn(_ sender: UIButton) {
         dismissKeyboard()
         
@@ -47,17 +49,20 @@ class SignInViewCont: UIViewController {
         }
     }
     
+    // Sign up action
     @IBAction func signUp(_ sender: UIButton) {
         goSignUpVC()
         cleanTxtFields()
         dismissKeyboard()
     }
     
+    // Background helper action
     @IBAction func backgroundHelper(_ sender: UIButton) {
         dismissKeyboard()
     }
     
     // MARK: HelperFunctions
+    // This method shows to sign up view
     @objc func goSignUpVC(){
         let main = UIStoryboard(name: "Main", bundle: nil)
         let signUpView = main.instantiateViewController(withIdentifier: "SignUpVC")
@@ -65,15 +70,18 @@ class SignInViewCont: UIViewController {
         self.present(signUpView, animated: true, completion: nil)
     }
     
+    // Clean text fields
     @objc func cleanTxtFields(){
         txtEmail.text = ""
         txtPassword.text = ""
     }
     
+    // Dismiss keyboard
     @objc func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
+    // Sign in method. if success, app goes to user profile.
     @objc func signInUser(){
         ProgressHUD.show("Sing In...")
         email = txtEmail.text!
@@ -89,13 +97,15 @@ class SignInViewCont: UIViewController {
         }
     }
     
+    // UI items
     func viewItems(){
-       imgBackground.image = UIImage(named: "LoginBackground")
-       imgBackground.alpha = 0.3
+       imgBackground.image = UIImage(named: "loginBackground")
+       imgBackground.alpha = 0.1
        lblTag.text = "QChat"
     }
     
     // MARK: GoToApp
+    // Go to application
     @objc func goToApp(){
         ProgressHUD.dismiss()
         cleanTxtFields()

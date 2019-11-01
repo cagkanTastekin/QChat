@@ -15,6 +15,7 @@ class SettingsTableViewCont: UITableViewController {
     // MARK: Outlets
     @IBOutlet weak var btnLogOut: UIButton!
     // MARK: ViewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true

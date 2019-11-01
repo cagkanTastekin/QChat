@@ -35,6 +35,7 @@ class SignUpViewCont: UIViewController {
     }
    
     // MARK: IBActions
+    // Sign up action method
     @IBAction func signUp(_ sender: UIButton) {
         dismissKeyboard()
         
@@ -42,7 +43,6 @@ class SignUpViewCont: UIViewController {
             if txtPassword.text == txtRepeatPassword.text {
                 let mail = String(txtPassword.text!)
                 if mail.count < 6{
-                    print("az")
                     ProgressHUD.showError("Password must to be minimum 6 characters")
                 } else {
                     registerNewUser()
@@ -68,37 +68,44 @@ class SignUpViewCont: UIViewController {
         }
     }
     
+    // Cancel method
     @IBAction func cancel(_ sender: UIButton) {
         cleanTxtFields()
         dismissKeyboard()
         goSignInView()
     }
     
+    // Background helper action
     @IBAction func backgroundHelper(_ sender: UIButton) {
         dismissKeyboard()
     }
     
     //MARK: HelperFunctions
+    // Clean text fields
     @objc func cleanTxtFields(){
         txtEmail.text = ""
         txtPassword.text = ""
         txtRepeatPassword.text = ""
     }
     
+    // Goes to Sign in view
     @objc func goSignInView(){
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Dismiss keyboard
     @objc func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
+    // UI items
     func viewItems(){
-       imgBackground.image = UIImage(named: "LoginBackground")
-       imgBackground.alpha = 0.3
+       imgBackground.image = UIImage(named: "loginBackground")
+       imgBackground.alpha = 0.1
        lblTag.text = "Sign Up"
     }
     
+    // This method sends to email and password informations to RegistrationViewCont class
     @objc func registerNewUser(){
         email = txtEmail.text!
         password = txtPassword.text!

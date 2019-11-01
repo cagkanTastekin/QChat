@@ -19,7 +19,10 @@ target 'QChat' do
   pod 'IDMPhotoBrowser'
 
   pod 'ImagePicker'
-
+  
+  pod 'MaterialTextField'
+  pod 'IQKeyboardManagerSwift'
+ 
   # Pods for QChat
 
 end
