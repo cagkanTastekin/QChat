@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 
+// MARK: ImageInitilazer
+// If user will not select an avatar image, this method will create one. First letters of name and surname
 func imageFromInitials(firstName: String?,lastName: String?, withBlock: @escaping(_ image: UIImage) -> Void){
     
     var string: String!
@@ -39,4 +41,11 @@ func imageFromInitials(firstName: String?,lastName: String?, withBlock: @escapin
     
     withBlock(img!)
 
+}
+
+func imageFromData(pictureData: String, withBlock: (_ image: UIImage?) -> Void) {
+    var image:UIImage?
+    let decodedData = NSData(base64Encoded: pictureData, options: NSData.Base64DecodingOptions(rawValue: 0))
+    image = UIImage(data: decodedData! as Data)
+    withBlock(image)
 }

@@ -9,6 +9,8 @@
 import Foundation
 import FirebaseFirestore
 
+// MARK: CollectionReference
+// Lists contact types.
 enum FCollectionReference : String {
     case User
     case Typing

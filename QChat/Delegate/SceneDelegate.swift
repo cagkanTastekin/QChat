@@ -12,10 +12,11 @@ import Firebase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var authListener: AuthStateDidChangeListenerHandle?
+    var authListener: AuthStateDidChangeListenerHandle? // Created
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        // Auto Login
         authListener = Auth.auth().addStateDidChangeListener({ (auth, user) in
             Auth.auth().removeStateDidChangeListener(self.authListener!)
             if user != nil {

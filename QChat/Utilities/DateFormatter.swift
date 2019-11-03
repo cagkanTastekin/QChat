@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 
-// MARK: Global Functions
+// MARK: DateFormatter
 private let dateFormat = "yyyyMMddHHmmss"
 
 func dateFormatter() -> DateFormatter {
