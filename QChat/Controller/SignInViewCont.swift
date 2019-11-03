@@ -97,11 +97,24 @@ class SignInViewCont: UIViewController {
         }
     }
     
+    // Add left image for textfields.
+    func addLeftImage(txtField: MFTextField, andImage img:UIImage){
+        let leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.width))
+        leftImageView.image = img
+        txtField.leftView = leftImageView
+        txtField.leftViewMode = .always
+    }
+    
     // UI items
     func viewItems(){
-       imgBackground.image = UIImage(named: "loginBackground")
-       imgBackground.alpha = 0.1
-       lblTag.text = "QChat"
+        imgBackground.image = UIImage(named: "loginBackground")
+        imgBackground.alpha = 0.1
+        lblTag.text = "QChat"
+        
+        let emailImage = UIImage(named: "email")
+        addLeftImage(txtField: txtEmail, andImage: emailImage!)
+        let passwordImage = UIImage(named: "password")
+        addLeftImage(txtField: txtPassword, andImage: passwordImage!)
     }
     
     // MARK: GoToApp

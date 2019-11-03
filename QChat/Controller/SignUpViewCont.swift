@@ -10,6 +10,7 @@
 
 import UIKit
 import ProgressHUD
+import MaterialTextField
 
 class SignUpViewCont: UIViewController {
     
@@ -18,9 +19,9 @@ class SignUpViewCont: UIViewController {
     @IBOutlet weak var btnBackground: UIButton!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var lblTag: UILabel!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtRepeatPassword: UITextField!
+    @IBOutlet weak var txtEmail: MFTextField!
+    @IBOutlet weak var txtPassword: MFTextField!
+    @IBOutlet weak var txtRepeatPassword: MFTextField!
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     
@@ -80,7 +81,7 @@ class SignUpViewCont: UIViewController {
         dismissKeyboard()
     }
     
-    //MARK: HelperFunctions
+    // MARK: HelperFunctions
     // Clean text fields
     @objc func cleanTxtFields(){
         txtEmail.text = ""
@@ -100,9 +101,15 @@ class SignUpViewCont: UIViewController {
     
     // UI items
     func viewItems(){
-       imgBackground.image = UIImage(named: "loginBackground")
-       imgBackground.alpha = 0.1
-       lblTag.text = "Sign Up"
+        imgBackground.image = UIImage(named: "loginBackground")
+        imgBackground.alpha = 0.1
+        lblTag.text = "Sign Up"
+        
+        let emailImage = UIImage(named: "email")
+        addLeftImage(txtField: txtEmail, andImage: emailImage!)
+        let passwordImage = UIImage(named: "password")
+        addLeftImage(txtField: txtPassword, andImage: passwordImage!) 
+        addLeftImage(txtField: txtRepeatPassword, andImage: passwordImage!)
     }
     
     // This method sends to email and password informations to RegistrationViewCont class
@@ -116,6 +123,14 @@ class SignUpViewCont: UIViewController {
         registrationView?.password = password
         registrationView?.modalPresentationStyle = .fullScreen
         self.present(registrationView!, animated: true, completion: nil)
+    }
+    
+    // Add left image for textfields.
+    func addLeftImage(txtField: MFTextField, andImage img:UIImage){
+        let leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.width))
+        leftImageView.image = img
+        txtField.leftView = leftImageView
+        txtField.leftViewMode = .always
     }
     
 }
