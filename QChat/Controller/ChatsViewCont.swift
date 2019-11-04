@@ -23,13 +23,12 @@ class ChatsViewCont: UIViewController {
     
     // MARK: IBActions
     // List users for create new chat
-    @IBAction func createNewChat(_ sender: UIBarButtonItem) {
+    @IBAction func onClickCreateNewChat(_ sender: UIBarButtonItem) {
         let main = UIStoryboard(name: "Main", bundle: nil)
         let usersView = main.instantiateViewController(withIdentifier: "UsersTVC") as! UsersTableViewCont
         usersView.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(usersView, animated: true)
     }
-    
 }
 
 

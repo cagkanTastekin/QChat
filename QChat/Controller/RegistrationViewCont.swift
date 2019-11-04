@@ -40,20 +40,17 @@ class RegistrationViewCont: UIViewController {
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewItems()
+        setupUI()
     }
     
     // MARK: IBActions
-    // Cancel action
-    @IBAction func cancelRegistration(_ sender: UIButton) {
+    // Background helper action
+    @IBAction func onClickBackgroundHelper(_ sender: UIButton) {
         dismissKeyboard()
-        cleanTxtFields()
-        cleanAvatarImage()
-        goSignUpView()
     }
     
     // Register action
-    @IBAction func finishRegistration(_ sender: UIButton) {
+    @IBAction func onClickRegister(_ sender: UIButton) {
         dismissKeyboard()
         cleanAvatarImage()
         
@@ -79,21 +76,23 @@ class RegistrationViewCont: UIViewController {
                 }
                 self.registerUser()
             }
-            
         } else {
             ProgressHUD.showError("All fields are required!")
         }
-        cleanTxtFields()
+        cleanTextFields()
     }
     
-    // Background helper action
-    @IBAction func backgroundHelper(_ sender: UIButton) {
+    // Cancel action
+    @IBAction func onClickCancel(_ sender: UIButton) {
         dismissKeyboard()
+        cleanTextFields()
+        cleanAvatarImage()
+        goSignUpView()
     }
     
     // MARK: HelperFunctions
     // UI items
-    func viewItems(){
+    func setupUI(){
         imgBackground.image = UIImage(named: "loginBackground")
         imgBackground.alpha = 0.1
         imgAvatar.image = UIImage(named: "avatarPlaceholder")
@@ -111,7 +110,7 @@ class RegistrationViewCont: UIViewController {
     }
     
     // Clean text fields
-    @objc func cleanTxtFields(){
+    func cleanTextFields(){
         txtName.text = ""
         txtSurname.text = ""
         txtCountry.text = ""
@@ -120,23 +119,22 @@ class RegistrationViewCont: UIViewController {
     }
     
     // Clean avatar
-    @objc func cleanAvatarImage(){
+    func cleanAvatarImage(){
         imgAvatar.image = UIImage(named: "avatarPlaceHolder")
     }
     
     // Dismiss keyboard
-    @objc func dismissKeyboard(){
+    func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
     // Go back
-    @objc func goSignUpView(){
+    func goSignUpView(){
         self.dismiss(animated: true, completion: nil)
     }
     
     // Register user. Creating fullname, dictionary, avatar image and finishRegistration()
-    @objc func registerUser(){
-        
+    func registerUser(){
         let fullName = name + " " + surname
         var tempDictionary : Dictionary = [kFIRSTNAME : name,
                                            kLASTNAME : surname,
@@ -150,20 +148,18 @@ class RegistrationViewCont: UIViewController {
                 let avatarIMG = avatarInitials.jpegData(compressionQuality: 0.7)
                 let avatar = avatarIMG!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
                 tempDictionary[kAVATAR] = avatar
-                
                 self.finishRegistration(withValues: tempDictionary)
             }
         } else {
             let avatarData = avatarImage?.jpegData(compressionQuality: 0.7)
             let avatar = avatarData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             tempDictionary[kAVATAR] = avatar
-            
             self.finishRegistration(withValues: tempDictionary)
         }
     }
     
     // Finish registration
-    @objc func finishRegistration(withValues: [String : Any])  {
+    func finishRegistration(withValues: [String : Any])  {
             updateCurrentUserInFirestore(withValues: withValues) { (error) in
             
             if error != nil {
@@ -178,9 +174,9 @@ class RegistrationViewCont: UIViewController {
     }
     
     // Go to application
-    @objc func goToApp(){
+    func goToApp(){
         ProgressHUD.dismiss()
-        cleanTxtFields()
+        cleanTextFields()
         dismissKeyboard()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUSER_DID_LOGIN_NOTIFICATIONS), object: nil, userInfo: [kUSERID : FUser.currentId()])

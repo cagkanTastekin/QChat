@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: CreateCircleAvatarImage
 extension UIImage {
-    
     var isPortrait : Bool    { return size.height > size.width }
     var isLandcape : Bool    { return size.width > size.height }
     var breadth    : CGFloat { return min(size.width, size.height) }
@@ -46,5 +46,4 @@ extension UIImage {
         
         return scaledImage!
     }
-    
 }

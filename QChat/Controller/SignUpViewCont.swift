@@ -32,12 +32,17 @@ class SignUpViewCont: UIViewController {
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewItems()
+        setupUI()
     }
    
     // MARK: IBActions
+    // Background helper action
+    @IBAction func onClickBackgroundHelper(_ sender: UIButton) {
+        dismissKeyboard()
+    }
+    
     // Sign up action method
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func onClickSignUp(_ sender: UIButton) {
         dismissKeyboard()
         
         if txtEmail.text != "" && txtPassword.text != "" && txtRepeatPassword.text != ""{
@@ -69,38 +74,33 @@ class SignUpViewCont: UIViewController {
         }
     }
     
-    // Cancel method
-    @IBAction func cancel(_ sender: UIButton) {
+    // Cancel action
+    @IBAction func onClickCancel(_ sender: UIButton) {
         cleanTxtFields()
         dismissKeyboard()
         goSignInView()
     }
     
-    // Background helper action
-    @IBAction func backgroundHelper(_ sender: UIButton) {
-        dismissKeyboard()
-    }
-    
     // MARK: HelperFunctions
     // Clean text fields
-    @objc func cleanTxtFields(){
+    func cleanTxtFields(){
         txtEmail.text = ""
         txtPassword.text = ""
         txtRepeatPassword.text = ""
     }
     
     // Goes to Sign in view
-    @objc func goSignInView(){
+    func goSignInView(){
         self.dismiss(animated: true, completion: nil)
     }
     
     // Dismiss keyboard
-    @objc func dismissKeyboard(){
+    func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
     // UI items
-    func viewItems(){
+    func setupUI(){
         imgBackground.image = UIImage(named: "loginBackground")
         imgBackground.alpha = 0.1
         lblTag.text = "Sign Up"
@@ -113,7 +113,7 @@ class SignUpViewCont: UIViewController {
     }
     
     // This method sends to email and password informations to RegistrationViewCont class
-    @objc func registerNewUser(){
+    func registerNewUser(){
         email = txtEmail.text!
         password = txtPassword.text!
         

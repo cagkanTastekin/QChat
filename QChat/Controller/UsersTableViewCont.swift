@@ -13,7 +13,7 @@ import UIKit
 import Firebase
 import ProgressHUD
 
-class UsersTableViewCont: UITableViewController, UISearchResultsUpdating {
+class UsersTableViewCont: UITableViewController, UISearchResultsUpdating, UsersCellDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var viewHeader: UIView!
@@ -34,10 +34,8 @@ class UsersTableViewCont: UITableViewController, UISearchResultsUpdating {
         tableView.tableFooterView = UIView()
         
         navigationItem.searchController = searchController
-        
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
-        
         loadUsers(filter: kCITY)
     }
 
@@ -84,6 +82,7 @@ class UsersTableViewCont: UITableViewController, UISearchResultsUpdating {
         }
         
         cell.generateCellWith(fUser: user, indexPath: indexPath)
+        cell.delegate = self
         
         return cell
     }
@@ -176,7 +175,7 @@ class UsersTableViewCont: UITableViewController, UISearchResultsUpdating {
     
     // MARK: IBActions
     // Segmented controller action
-    @IBAction func filterSegmentValueChanged(_ sender: UISegmentedControl) {
+    @IBAction func onClickFilterChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             loadUsers(filter: kCITY)
@@ -206,6 +205,24 @@ class UsersTableViewCont: UITableViewController, UISearchResultsUpdating {
             }
             self.allUsersGroupped[firstCharString]?.append(currentUser)
         }
+    }
+    
+    // MARK: UserTableViewCellDelegate
+    func didTapAvatarImage(indexPath: IndexPath) {
+       // print(indexPath)
+        let userProfileTVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "UserProfileTVC") as! UserProfileTableViewCont
+        var user: FUser
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            user = filteredUsers[indexPath.row]
+        } else {
+            let sectionTitle = self.sectionTitleList[indexPath.section]
+            let users = self.allUsersGroupped[sectionTitle]
+            user = users![indexPath.row]
+        }
+        userProfileTVC.user = user
+        userProfileTVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(userProfileTVC, animated: true)
     }
 
 }

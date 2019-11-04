@@ -30,12 +30,24 @@ class SignInViewCont: UIViewController {
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewItems()
+        setupUI()
     }
     
     // MARK: IBActions
-    // Sign in action
-    @IBAction func signIn(_ sender: UIButton) {
+    // Background helper action onClickBackgroundHelper
+    @IBAction func onClickBackgroundHelper(_ sender: UIButton) {
+        dismissKeyboard()
+    }
+    
+    // Sign up action onClickSignUp
+    @IBAction func onClickSignUp(_ sender: UIButton) {
+        goSignUpVC()
+        cleanTxtFields()
+        dismissKeyboard()
+    }
+    
+    // Sign in action onClickSignIn
+    @IBAction func onClickSignIn(_ sender: UIButton) {
         dismissKeyboard()
         
         if txtEmail.text != "" && txtPassword.text != "" {
@@ -49,21 +61,9 @@ class SignInViewCont: UIViewController {
         }
     }
     
-    // Sign up action
-    @IBAction func signUp(_ sender: UIButton) {
-        goSignUpVC()
-        cleanTxtFields()
-        dismissKeyboard()
-    }
-    
-    // Background helper action
-    @IBAction func backgroundHelper(_ sender: UIButton) {
-        dismissKeyboard()
-    }
-    
     // MARK: HelperFunctions
     // This method shows to sign up view
-    @objc func goSignUpVC(){
+    func goSignUpVC(){
         let main = UIStoryboard(name: "Main", bundle: nil)
         let signUpView = main.instantiateViewController(withIdentifier: "SignUpVC")
         signUpView.modalPresentationStyle = .fullScreen
@@ -71,24 +71,23 @@ class SignInViewCont: UIViewController {
     }
     
     // Clean text fields
-    @objc func cleanTxtFields(){
+    func cleanTxtFields(){
         txtEmail.text = ""
         txtPassword.text = ""
     }
     
     // Dismiss keyboard
-    @objc func dismissKeyboard(){
+    func dismissKeyboard(){
         self.view.endEditing(false)
     }
     
     // Sign in method. if success, app goes to user profile.
-    @objc func signInUser(){
+    func signInUser(){
         ProgressHUD.show("Sing In...")
         email = txtEmail.text!
         password = txtPassword.text!
         
         FUser.loginUserWith(email: email, password: password){ (error)in
-            
             if error != nil{
                 ProgressHUD.showError(error!.localizedDescription)
                 return
@@ -106,7 +105,7 @@ class SignInViewCont: UIViewController {
     }
     
     // UI items
-    func viewItems(){
+    func setupUI(){
         imgBackground.image = UIImage(named: "loginBackground")
         imgBackground.alpha = 0.1
         lblTag.text = "QChat"
@@ -119,7 +118,7 @@ class SignInViewCont: UIViewController {
     
     // MARK: GoToApp
     // Go to application
-    @objc func goToApp(){
+    func goToApp(){
         ProgressHUD.dismiss()
         cleanTxtFields()
         dismissKeyboard()

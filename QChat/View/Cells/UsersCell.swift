@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol UsersCellDelegate {
+    func didTapAvatarImage(indexPath: IndexPath)
+}
+
 class UsersCell: UITableViewCell {
 
     // MARK: Outlets
@@ -15,14 +19,14 @@ class UsersCell: UITableViewCell {
     @IBOutlet weak var lblFullName: UILabel!
     
     var indexPath: IndexPath!
-    
+    var delegate: UsersCellDelegate?
     let tabGestureRecognizer = UITapGestureRecognizer()
     
     // MARK: OverrideFunctions
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        tabGestureRecognizer.addTarget(self, action: #selector(self.avatarTap))
+        tabGestureRecognizer.addTarget(self, action: #selector(self.avatarTap)) // Selector needs @objc func
         imgAvatar.isUserInteractionEnabled = true
         imgAvatar.addGestureRecognizer(tabGestureRecognizer)
     }
@@ -40,7 +44,6 @@ class UsersCell: UITableViewCell {
             imageFromData(pictureData: fUser.avatar) { (avatarImage) in
                 if avatarImage != nil {
                     self.imgAvatar.image = avatarImage!.circleMasked
-                    
                 }
             }
         }
@@ -49,7 +52,7 @@ class UsersCell: UITableViewCell {
     // MARK: TapToAvatarImage
     // When user will tap avatar, detail view gonna show all searched user informations.
     @objc func avatarTap() {
-        
+        delegate?.didTapAvatarImage(indexPath: indexPath)
     }
 
 }

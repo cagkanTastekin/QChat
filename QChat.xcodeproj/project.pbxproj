@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E09C6A323704FA3000AEA8C /* UserProfileTableViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C6A223704FA3000AEA8C /* UserProfileTableViewCont.swift */; };
+		3E09C6A523707A4D000AEA8C /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09C6A423707A4D000AEA8C /* UIDeviceExtension.swift */; };
 		3E0C1050236B308F00931915 /* SettingsTableViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */; };
 		3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2334236AC91C00166FF4 /* DateFormatter.swift */; };
 		3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		39EDED100C4C23333196B122 /* Pods-QChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.debug.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.debug.xcconfig"; sourceTree = "<group>"; };
+		3E09C6A223704FA3000AEA8C /* UserProfileTableViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCont.swift; sourceTree = "<group>"; };
+		3E09C6A423707A4D000AEA8C /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCont.swift; sourceTree = "<group>"; };
 		3E1F2334236AC91C00166FF4 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInitilazer.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */,
 				3E918A07236F03DA0021B24D /* ChatsViewCont.swift */,
 				3E918A05236EF1440021B24D /* UsersTableViewCont.swift */,
+				3E09C6A223704FA3000AEA8C /* UserProfileTableViewCont.swift */,
 				3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */,
 			);
 			path = Controller;
@@ -147,6 +152,7 @@
 		3E4479E82369769D00F93709 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3E09C6A423707A4D000AEA8C /* UIDeviceExtension.swift */,
 				3E918A03236EE4E30021B24D /* ImageExtensions.swift */,
 			);
 			path = Extensions;
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E09C6A323704FA3000AEA8C /* UserProfileTableViewCont.swift in Sources */,
 				3E918A06236EF1440021B24D /* UsersTableViewCont.swift in Sources */,
 				3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */,
 				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
@@ -317,6 +324,7 @@
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,
 				3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */,
 				3E4479F823698B1500F93709 /* Constants.swift in Sources */,
+				3E09C6A523707A4D000AEA8C /* UIDeviceExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

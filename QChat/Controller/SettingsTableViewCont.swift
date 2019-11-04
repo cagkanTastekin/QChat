@@ -34,7 +34,7 @@ class SettingsTableViewCont: UITableViewController {
 
     // MARK: IBActions
     // Logout function
-    @IBAction func logout(_ sender: UIButton) {
+    @IBAction func onClickLogout(_ sender: UIButton) {
         FUser.logOutCurrentUser { (success) in
             if success{
                 self.goSignInView()
@@ -44,7 +44,7 @@ class SettingsTableViewCont: UITableViewController {
     
     // MARK: HelperFunctions
     // After logout, view returns sing in view
-    @objc func goSignInView(){
+    func goSignInView(){
         let main = UIStoryboard(name: "Main", bundle: nil)
         let signInView = main.instantiateViewController(withIdentifier: "SignInVC")
         signInView.modalPresentationStyle = .fullScreen
