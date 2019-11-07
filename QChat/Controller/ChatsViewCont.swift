@@ -31,7 +31,6 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         searchController.searchResultsUpdater = self
-       // searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         
         tableView.dataSource = self
@@ -91,6 +90,76 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    // MARK: TableViewDelegate Functions
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var tempRecent: NSDictionary!
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            tempRecent = filteredChats[indexPath.row]
+        } else {
+            tempRecent = recentChats[indexPath.row]
+        }
+        
+        var muteTitle = "Unmute"
+        var mute = false
+        
+        if (tempRecent[kMEMBERSTOPUSH] as! [String]).contains(FUser.currentId()) {
+            muteTitle = "Mute"
+            mute = true
+        }
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, performed) in
+            print("Pushed Delete")
+            performed(true)
+        }
+        
+        let muteAction = UIContextualAction(style: .normal, title: muteTitle) { (action, view, performed) in
+            print("Pushed Mute")
+            performed(true)
+        }
+        
+        deleteAction.backgroundColor = UIColor.clrRed
+        muteAction.backgroundColor = UIColor.clrBlue
+       
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, muteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
+    }
+    
+    
+     /*
+    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UIContextualAction]? {
+        var tempRecent: NSDictionary!
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            tempRecent = filteredChats[indexPath.row]
+        } else {
+            tempRecent = recentChats[indexPath.row]
+        }
+        
+        var muteTitle = "Unmute"
+        var mute = false
+        
+        if (tempRecent[kMEMBERSTOPUSH] as! [String]).contains(FUser.currentId()) {
+            muteTitle = "Mute"
+            mute = true
+        }
+       
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete",
+          handler: { (action, view, completionHandler) in
+          print("Delete")
+            completionHandler(true)
+          
+        })
+        
+        
+     
+    } */
     
     
     // MARK: LoadRecentChats

@@ -26,11 +26,11 @@ func imageFromInitials(firstName: String?,lastName: String?, withBlock: @escapin
     
     let lblNameInitialize = UILabel()
     lblNameInitialize.frame.size = CGSize(width: 100, height: 100)
-    lblNameInitialize.textColor = .white
+    lblNameInitialize.textColor = UIColor.clrWhite
     lblNameInitialize.font = UIFont(name: lblNameInitialize.font.fontName, size: CGFloat(size))
     lblNameInitialize.text = string
     lblNameInitialize.textAlignment = NSTextAlignment.center
-    lblNameInitialize.backgroundColor = UIColor.lightGray
+    lblNameInitialize.backgroundColor = UIColor.clrLightGray
     lblNameInitialize.layer.cornerRadius = 25
     
     UIGraphicsBeginImageContext(lblNameInitialize.frame.size)
