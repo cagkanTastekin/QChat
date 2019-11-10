@@ -13,6 +13,9 @@
 		3E0C73BA237170FF0007B275 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73B9237170FF0007B275 /* RecentChat.swift */; };
 		3E0C73BC23718F060007B275 /* RecentChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73BB23718F060007B275 /* RecentChatsCell.swift */; };
 		3E0C73BE2371BE100007B275 /* SnapshotDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73BD2371BE100007B275 /* SnapshotDictionary.swift */; };
+		3E18033C2378325B00479522 /* ChatViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033B2378325B00479522 /* ChatViewCont.swift */; };
+		3E18033E23785E0A00479522 /* OutgoingMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033D23785E0A00479522 /* OutgoingMessages.swift */; };
+		3E180340237867FE00479522 /* IncomingMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033F237867FE00479522 /* IncomingMessages.swift */; };
 		3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2334236AC91C00166FF4 /* DateFormatter.swift */; };
 		3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */; };
 		3E4479D12369766900F93709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D02369766900F93709 /* AppDelegate.swift */; };
@@ -43,6 +46,9 @@
 		3E0C73B9237170FF0007B275 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		3E0C73BB23718F060007B275 /* RecentChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChatsCell.swift; sourceTree = "<group>"; };
 		3E0C73BD2371BE100007B275 /* SnapshotDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDictionary.swift; sourceTree = "<group>"; };
+		3E18033B2378325B00479522 /* ChatViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCont.swift; sourceTree = "<group>"; };
+		3E18033D23785E0A00479522 /* OutgoingMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessages.swift; sourceTree = "<group>"; };
+		3E18033F237867FE00479522 /* IncomingMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessages.swift; sourceTree = "<group>"; };
 		3E1F2334236AC91C00166FF4 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInitilazer.swift; sourceTree = "<group>"; };
 		3E4479CD2369766900F93709 /* QChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +124,8 @@
 			children = (
 				3E4479F123698A8300F93709 /* FUser.swift */,
 				3E0C73B9237170FF0007B275 /* RecentChat.swift */,
+				3E18033D23785E0A00479522 /* OutgoingMessages.swift */,
+				3E18033F237867FE00479522 /* IncomingMessages.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 				3E4479ED2369791500F93709 /* SignUpViewCont.swift */,
 				3E90F7C12369B68C00BB0C3F /* RegistrationViewCont.swift */,
 				3E918A07236F03DA0021B24D /* ChatsViewCont.swift */,
+				3E18033B2378325B00479522 /* ChatViewCont.swift */,
 				3E918A05236EF1440021B24D /* UsersTableViewCont.swift */,
 				3E09C6A223704FA3000AEA8C /* UserProfileTableViewCont.swift */,
 				3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */,
@@ -325,7 +334,10 @@
 				3E918A06236EF1440021B24D /* UsersTableViewCont.swift in Sources */,
 				3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */,
 				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
+				3E180340237867FE00479522 /* IncomingMessages.swift in Sources */,
 				3E918A08236F03DA0021B24D /* ChatsViewCont.swift in Sources */,
+				3E18033C2378325B00479522 /* ChatViewCont.swift in Sources */,
+				3E18033E23785E0A00479522 /* OutgoingMessages.swift in Sources */,
 				3E0C73BC23718F060007B275 /* RecentChatsCell.swift in Sources */,
 				3E0C1050236B308F00931915 /* SettingsTableViewCont.swift in Sources */,
 				3E4479F223698A8300F93709 /* FUser.swift in Sources */,
@@ -496,7 +508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cagkan.QChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -516,7 +528,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cagkan.QChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

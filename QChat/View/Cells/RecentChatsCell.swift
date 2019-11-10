@@ -59,11 +59,11 @@ class RecentChatsCell: UITableViewCell {
         // Unreaded label counter
         if recentChat[kCOUNTER] as! Int != 0 {
             self.lblMessageCounter.text = "\(recentChat[kCOUNTER] as! Int)"
-            self.viewMessageCounter.isHidden = true
-            self.lblMessageCounter.isHidden = true
-        } else {
             self.viewMessageCounter.isHidden = false
             self.lblMessageCounter.isHidden = false
+        } else {
+            self.viewMessageCounter.isHidden = true
+            self.lblMessageCounter.isHidden = true
         }
         
         // Date

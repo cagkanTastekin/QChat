@@ -114,6 +114,9 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, view, performed) in
             print("Pushed Delete")
+            self.recentChats.remove(at: indexPath.row)
+            deleteRecentChat(recentChatDictionary: tempRecent)
+            self.tableView.reloadData()
             performed(true)
         }
         
@@ -131,35 +134,26 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return configuration
     }
     
-    
-     /*
-    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UIContextualAction]? {
-        var tempRecent: NSDictionary!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var recent: NSDictionary!
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            tempRecent = filteredChats[indexPath.row]
+            recent = filteredChats[indexPath.row]
         } else {
-            tempRecent = recentChats[indexPath.row]
+            recent = recentChats[indexPath.row]
         }
         
-        var muteTitle = "Unmute"
-        var mute = false
-        
-        if (tempRecent[kMEMBERSTOPUSH] as! [String]).contains(FUser.currentId()) {
-            muteTitle = "Mute"
-            mute = true
-        }
-       
-        let deleteAction = UIContextualAction(style: .normal, title: "Delete",
-          handler: { (action, view, completionHandler) in
-          print("Delete")
-            completionHandler(true)
-          
-        })
-        
-        
-     
-    } */
+        // Restart Char
+        restartRecentChat(recent: recent)
+        // Show Chat view
+        let chatVC = ChatViewCont()
+        chatVC.hidesBottomBarWhenPushed = true
+        chatVC.titleName = recent[kWITHUSERUSERNAME] as? String
+        chatVC.memberIds = (recent[kMEMBERS] as? [String])!
+        chatVC.membersToPush = (recent[kMEMBERSTOPUSH] as? [String])!
+        chatVC.chatRoomId = (recent[kCHATROOMID] as? String)!
+        navigationController?.pushViewController(chatVC, animated: true)
+    }
     
     
     // MARK: LoadRecentChats

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import FirebaseFirestore
 
 // MARK: ImageInitilazer
 // If user will not select an avatar image, this method will create one. First letters of name and surname

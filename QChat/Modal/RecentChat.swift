@@ -90,3 +90,21 @@ func createRecentItems(userId: String, chatRoomId: String, members: [String], wi
     // save recent chat
     localReference.setData(recent)
 }
+
+// MARK: Restart Chat
+func restartRecentChat(recent: NSDictionary) {
+    if recent[kTYPE] as! String == kPRIVATE {
+        createRecent(members: recent[kMEMBERSTOPUSH] as! [String], chatRoomId: recent[kCHATROOMID] as! String, withUserUserName: FUser.currentUser()!.firstname, typeOfChat: kGROUP, users: [FUser.currentUser()!], avatarofGroup: recent[kAVATAR] as? String)
+    }
+    
+    if recent[kTYPE] as! String == kGROUP {
+        createRecent(members: recent[kMEMBERSTOPUSH] as! [String], chatRoomId: recent[kCHATROOMID] as! String, withUserUserName: recent[kWITHUSERFULLNAME] as! String, typeOfChat: kGROUP, users: [FUser.currentUser()!], avatarofGroup: recent[kAVATAR] as? String)
+    }
+}
+
+// MARK: Delete Recent
+func deleteRecentChat(recentChatDictionary: NSDictionary) {
+    if let recentId = recentChatDictionary[kRECENTID] {
+        reference(collectionReference: .Recent).document(recentId as! String).delete()
+    }
+}
