@@ -152,6 +152,7 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         chatVC.memberIds = (recent[kMEMBERS] as? [String])!
         chatVC.membersToPush = (recent[kMEMBERSTOPUSH] as? [String])!
         chatVC.chatRoomId = (recent[kCHATROOMID] as? String)!
+        chatVC.isGroup = (recent[kTYPE] as! String) == kGROUP
         navigationController?.pushViewController(chatVC, animated: true)
     }
     
@@ -182,12 +183,12 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let groupChatButton = UIButton(frame: CGRect(x: tableView.frame.width - 110, y: 10, width: 100, height: 20))
         groupChatButton.addTarget(self, action: #selector(self.groupButtonPressed), for: .touchUpInside)
         groupChatButton.setTitle("New Group", for: .normal)
-        let buttonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        let buttonColor = UIColor.clrBlue
         groupChatButton.setTitleColor(buttonColor, for: .normal)
         
         let lineView = UIView(frame: CGRect(x: 0, y: headerView.frame.height - 1, width: tableView.frame.width, height: 1))
         
-        lineView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        lineView.backgroundColor = UIColor.clrLightGray
         
         buttonView.addSubview(groupChatButton)
         headerView.addSubview(buttonView)
