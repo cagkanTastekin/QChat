@@ -18,7 +18,7 @@ public let kUSER_DID_LOGIN_NOTIFICATIONS = "UserDidLoginNotification"
 public let kAPP_STARTED_NOTIFICATIONS = "AppStartedNotifications"
 
 // ID's and Keys
-public let kFILEREFERENCE = ""
+public let kFILEREFERENCE = "gs://qchat-8932d.appspot.com"
 public let kONESIGNALAPPID = ""
 public let kSINCHKEY = ""
 public let kSINCHSECRET = ""
