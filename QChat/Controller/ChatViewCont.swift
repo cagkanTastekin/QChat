@@ -10,12 +10,14 @@ import UIKit
 import JSQMessagesViewController
 import ProgressHUD
 import IQAudioRecorderController
-import IDMPhotoBrowser
+import SKPhotoBrowser
 import AVFoundation
 import AVKit
 import FirebaseFirestore
 
-class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IQAudioRecorderViewControllerDelegate {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var chatRoomId: String!
     var memberIds: [String]!
@@ -196,6 +198,7 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
         
         let takePhotoOrVideo = UIAlertAction(title: "Camera", style: .default) { (action) in
             camera.PresentMultyCamera(target: self, canEdit: false)
+            
         }
         
         let sharePhoto = UIAlertAction(title: "Photo Library", style: .default) { (action) in
@@ -207,7 +210,9 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
         }
         
         let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (action) in
-            print("Share Location")
+            if self.haveAccessToUserLocation() {
+                self.sendMessage(text: nil, date: Date(), picture: nil, location: kLOCATION, video: nil, audio: nil)
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in }
@@ -233,7 +238,8 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
             self.sendMessage(text: text, date: date, picture: nil, location: nil, video: nil, audio: nil)
             updateSendButton(isSend: false)
         } else {
-            print("audio message")
+            let audioVC = AudioViewController(delegate_: self)
+            audioVC.presentAudioRecorder(target: self)
         }
     }
     
@@ -252,13 +258,22 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
         case kPICTURE:
             let message = messages[indexPath.row]
             let mediaItem = message.media as! JSQPhotoMediaItem
-            let photos = IDMPhoto.photos(withImages: [mediaItem.image!])
-            let browser = IDMPhotoBrowser(photos: photos)
-            self.present(browser!, animated: true, completion: nil)
+            let target = mediaItem.image!
+            
+            var images = [SKPhoto]()
+            let photo = SKPhoto.photoWithImage(target)// add some UIImage
+            images.append(photo)
+            
+            let browser = SKPhotoBrowser(photos: images)
+            browser.initializePageIndex(0)
+            present(browser, animated: true, completion: {})
         case kLOCATION:
-            print("location mess tapped")
+            let message = messages[indexPath.row]
+            let mediaItem = message.media as! JSQLocationMediaItem
+            let mapView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapVC") as! MapViewCont
+            mapView.location = mediaItem.location
+            self.navigationController?.pushViewController(mapView, animated: true)
         case kVIDEO:
-            print("video mess tapped")
             let message = messages[indexPath.row]
             let mediaItem = message.media as! VideoMessage
             let player = AVPlayer(url: mediaItem.fileURL! as URL)
@@ -317,6 +332,33 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
             return
         }
         
+        // Audio Message
+        if let audioPath = audio {
+            uploadAudio(audioPath: audioPath, chatRoomId: chatRoomId, view: (self.navigationController?.view)!) { (audioLink) in
+                
+                if audioLink != nil {
+                    let text = "[\(kAUDIO)]"
+                    outgoingMessage = OutgoingMessage(message: text, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kAUDIO)
+                    
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    self.finishSendingMessage()
+                    outgoingMessage!.sendMessage(chatRoomId: self.chatRoomId, messageDictionary: outgoingMessage!.messageDictionary, memberIds: self.memberIds, membersToPush: self.membersToPush)
+                }
+                
+            }
+            return
+        }
+        
+        // Location Messages
+        if location != nil {
+            let latitude: NSNumber = NSNumber(value: appDelegate.coordinates!.latitude)
+            let longitude: NSNumber = NSNumber(value: appDelegate.coordinates!.longitude)
+            
+            let text = "[\(kLOCATION)]"
+            
+            outgoingMessage = OutgoingMessage(message: text, latitude: latitude, longitude: longitude, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kLOCATION)
+            
+        }
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         self.finishSendingMessage()
@@ -510,6 +552,16 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    // MARK: QIAudioDelegate
+    func audioRecorderController(_ controller: IQAudioRecorderViewController, didFinishWithAudioAtPath filePath: String) {
+        controller.dismiss(animated: true, completion: nil)
+        self.sendMessage(text: nil, date: Date(), picture: nil, location: nil, video: nil, audio: filePath)
+    }
+    
+    func audioRecorderControllerDidCancel(_ controller: IQAudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: SetupUI
     func setCustomTitle() {
         leftBarButtonView.addSubview(btnAvatar)
@@ -560,6 +612,18 @@ class ChatViewCont: JSQMessagesViewController, UIImagePickerControllerDelegate, 
         
         sendMessage(text: nil, date: Date(), picture: picture, location: nil, video: video, audio: nil)
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Location Acccess
+    func haveAccessToUserLocation() -> Bool {
+        
+        if appDelegate.locationManager != nil {
+            return true
+        } else {
+            ProgressHUD.showError("Please give access to location in Settings")
+            return false
+        }
+        
     }
     
     // MARK: HelperFunctions

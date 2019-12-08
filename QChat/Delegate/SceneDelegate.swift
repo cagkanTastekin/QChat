@@ -13,7 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var authListener: AuthStateDidChangeListenerHandle? // Created
-
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         // Auto Login
@@ -41,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        appDelegate.locationManagerStart()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -57,6 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        appDelegate.locationManagerStop()
     }
     
     // MARK: GoToApp
@@ -67,5 +71,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         mainAppView.modalPresentationStyle = .fullScreen
         self.window?.rootViewController = mainAppView
     }
-    
 }

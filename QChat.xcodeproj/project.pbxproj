@@ -13,11 +13,13 @@
 		3E0C73BA237170FF0007B275 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73B9237170FF0007B275 /* RecentChat.swift */; };
 		3E0C73BC23718F060007B275 /* RecentChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73BB23718F060007B275 /* RecentChatsCell.swift */; };
 		3E0C73BE2371BE100007B275 /* SnapshotDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C73BD2371BE100007B275 /* SnapshotDictionary.swift */; };
+		3E0E77B4239D3DD100548095 /* MapViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E77B3239D3DD100548095 /* MapViewCont.swift */; };
 		3E18033C2378325B00479522 /* ChatViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033B2378325B00479522 /* ChatViewCont.swift */; };
 		3E18033E23785E0A00479522 /* OutgoingMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033D23785E0A00479522 /* OutgoingMessages.swift */; };
 		3E180340237867FE00479522 /* IncomingMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033F237867FE00479522 /* IncomingMessages.swift */; };
 		3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2334236AC91C00166FF4 /* DateFormatter.swift */; };
 		3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */; };
+		3E40343A239BD27900E19802 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E403439239BD27900E19802 /* Reachability.swift */; };
 		3E4479D12369766900F93709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D02369766900F93709 /* AppDelegate.swift */; };
 		3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D22369766900F93709 /* SceneDelegate.swift */; };
 		3E4479D82369766900F93709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4479D62369766900F93709 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		3E918A06236EF1440021B24D /* UsersTableViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E918A05236EF1440021B24D /* UsersTableViewCont.swift */; };
 		3E918A08236F03DA0021B24D /* ChatsViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E918A07236F03DA0021B24D /* ChatsViewCont.swift */; };
 		3EB7A6FA2374800700A7871A /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7A6F92374800700A7871A /* ColorExtensions.swift */; };
+		3ED8967D239CEAC1007863D9 /* AudioMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8967C239CEAC1007863D9 /* AudioMedia.swift */; };
+		3ED8967F239D0BF2007863D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED8967E239D0BF2007863D9 /* CoreLocation.framework */; };
 		CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9830C7745211BC4F346B78DE /* Pods_QChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,11 +54,13 @@
 		3E0C73B9237170FF0007B275 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		3E0C73BB23718F060007B275 /* RecentChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChatsCell.swift; sourceTree = "<group>"; };
 		3E0C73BD2371BE100007B275 /* SnapshotDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDictionary.swift; sourceTree = "<group>"; };
+		3E0E77B3239D3DD100548095 /* MapViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCont.swift; sourceTree = "<group>"; };
 		3E18033B2378325B00479522 /* ChatViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCont.swift; sourceTree = "<group>"; };
 		3E18033D23785E0A00479522 /* OutgoingMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessages.swift; sourceTree = "<group>"; };
 		3E18033F237867FE00479522 /* IncomingMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessages.swift; sourceTree = "<group>"; };
 		3E1F2334236AC91C00166FF4 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInitilazer.swift; sourceTree = "<group>"; };
+		3E403439239BD27900E19802 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3E4479CD2369766900F93709 /* QChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4479D02369766900F93709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E4479D22369766900F93709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +84,8 @@
 		3E918A05236EF1440021B24D /* UsersTableViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCont.swift; sourceTree = "<group>"; };
 		3E918A07236F03DA0021B24D /* ChatsViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewCont.swift; sourceTree = "<group>"; };
 		3EB7A6F92374800700A7871A /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		3ED8967C239CEAC1007863D9 /* AudioMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMedia.swift; sourceTree = "<group>"; };
+		3ED8967E239D0BF2007863D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9830C7745211BC4F346B78DE /* Pods_QChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE6E4FAA10456ECF56986CE /* Pods-QChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QChat.release.xcconfig"; path = "Target Support Files/Pods-QChat/Pods-QChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ED8967F239D0BF2007863D9 /* CoreLocation.framework in Frameworks */,
 				CCE21FA0749F3BD4D750D072 /* Pods_QChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +169,7 @@
 				3E918A05236EF1440021B24D /* UsersTableViewCont.swift */,
 				3E09C6A223704FA3000AEA8C /* UserProfileTableViewCont.swift */,
 				3E0C104F236B308F00931915 /* SettingsTableViewCont.swift */,
+				3E0E77B3239D3DD100548095 /* MapViewCont.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -173,9 +183,11 @@
 				3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */,
 				3E0C73BD2371BE100007B275 /* SnapshotDictionary.swift */,
 				3E4D4542237C023900AD5175 /* Camera.swift */,
+				3E403439239BD27900E19802 /* Reachability.swift */,
 				3E4D4548237C4D0400AD5175 /* DownloadManager.swift */,
 				3E4D4550237C512500AD5175 /* PhotoMediaItem.swift */,
 				3E4D454C237C4F6800AD5175 /* VideoMedia.swift */,
+				3ED8967C239CEAC1007863D9 /* AudioMedia.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -220,6 +232,7 @@
 		E4290A1E4FA4968C30B757F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3ED8967E239D0BF2007863D9 /* CoreLocation.framework */,
 				9830C7745211BC4F346B78DE /* Pods_QChat.framework */,
 			);
 			name = Frameworks;
@@ -345,9 +358,11 @@
 				3E09C6A323704FA3000AEA8C /* UserProfileTableViewCont.swift in Sources */,
 				3E918A06236EF1440021B24D /* UsersTableViewCont.swift in Sources */,
 				3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */,
+				3E0E77B4239D3DD100548095 /* MapViewCont.swift in Sources */,
 				3E4479F623698AFB00F93709 /* CollectionReference.swift in Sources */,
 				3E180340237867FE00479522 /* IncomingMessages.swift in Sources */,
 				3E918A08236F03DA0021B24D /* ChatsViewCont.swift in Sources */,
+				3E40343A239BD27900E19802 /* Reachability.swift in Sources */,
 				3E18033C2378325B00479522 /* ChatViewCont.swift in Sources */,
 				3E18033E23785E0A00479522 /* OutgoingMessages.swift in Sources */,
 				3E0C73BC23718F060007B275 /* RecentChatsCell.swift in Sources */,
@@ -363,6 +378,7 @@
 				3E4479EC236978DF00F93709 /* SignInViewCont.swift in Sources */,
 				3E918A04236EE4E30021B24D /* ImageExtensions.swift in Sources */,
 				3E4479D12369766900F93709 /* AppDelegate.swift in Sources */,
+				3ED8967D239CEAC1007863D9 /* AudioMedia.swift in Sources */,
 				3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */,
 				3E4D4543237C023900AD5175 /* Camera.swift in Sources */,
 				3E4479F823698B1500F93709 /* Constants.swift in Sources */,

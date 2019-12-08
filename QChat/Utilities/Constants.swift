@@ -102,7 +102,7 @@ public let kLOCATION = "location"
 
 // Coordinates
 public let kLATITUDE = "latitude"
-public let kLONGTITUDE = "longtitude"
+public let kLONGITUDE = "longitude"
 
 // Message Status
 public let kDELIVERED = "delivered"

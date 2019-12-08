@@ -11,37 +11,57 @@ import FirebaseStorage
 import Firebase
 import MBProgressHUD
 import AVFoundation
+import ProgressHUD
 
 let storage = Storage.storage()
 
 // image
 func uploadImage(image: UIImage, chatRoomId: String, view: UIView, completion: @escaping (_ imageLink: String?) -> Void) {
-    let progressHUD = MBProgressHUD.showAdded(to: view, animated: true)
-    progressHUD.mode = .determinateHorizontalBar
-    let dateString = dateFormatter().string(from: Date())
-    let photoFileName = "Picture Messages/" + FUser.currentId() + "/" + chatRoomId + "/" + dateString + ".jpg"
-    
-    let storageReference = storage.reference(forURL: kFILEREFERENCE).child(photoFileName)
-    let imageData = image.jpegData(compressionQuality: 0.7)
-    var task: StorageUploadTask!
-    task = storageReference.putData(imageData!, metadata: nil, completion: { (metadata, error) in
-        task.removeAllObservers()
-        progressHUD.hide(animated: true)
+    if Reachabilty.HasConnection() {
+        let progressHUD = MBProgressHUD.showAdded(to: view, animated: true)
+        progressHUD.mode = .determinateHorizontalBar
+        let dateString = dateFormatter().string(from: Date())
+        var fileName = "PictureMessages/" + FUser.currentId() + "/" + chatRoomId + "/" + dateString + ".jpg"
+        let storageRef = storage.reference(forURL: kFILEREFERENCE).child(fileName)
+        let imageData = image.jpegData(compressionQuality: 0.5)
+        var task : StorageUploadTask!
         
-        if error != nil {
-            print(error!.localizedDescription) // error upload image
-            return
-        }
-        storageReference.downloadURL (completion: { (url, error) in
-            guard let downloadUrl = url else {
-                completion(nil)
+        task = storageRef.putData(imageData!, metadata: nil, completion: { metadata, error in
+            task.removeAllObservers()
+            progressHUD.hide(animated: true)
+     
+            if error != nil {
+                print("error uploading image \(error!.localizedDescription)")
+                ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+     
+            storageRef.downloadURL(completion: { (url, error) in
+                guard let downloadUrl = url else {
+                    completion(nil)
+                    return
+                }
+    
             completion(downloadUrl.absoluteString)
+            })
+     
         })
-    })
-    task.observe(StorageTaskStatus.progress) { (snapshot) in
-        progressHUD.progress = Float((snapshot.progress?.completedUnitCount)!) / Float((snapshot.progress?.totalUnitCount)!)
+     
+        task.observe(StorageTaskStatus.progress, handler: { snapshot in
+            progressHUD.progress = Float((snapshot.progress?.completedUnitCount)!) / Float( (snapshot.progress?.totalUnitCount)!)
+        })
+     
+        //save image locally
+        if imageData != nil {
+            fileName = dateString + ".jpg"
+            var docURL = getDocumentsURL()
+            docURL = docURL.appendingPathComponent(fileName, isDirectory: false)
+            let data = NSData(data: imageData!)
+            data.write(to: docURL, atomically: true)
+        }
+     
+    } else {
+        ProgressHUD.showError("No Internet Connection!")
     }
 }
 
@@ -134,6 +154,68 @@ func downloadVideo(videoUrl: String, completion: @escaping(_ isReadyToPlay: Bool
                 DispatchQueue.main.async {
                     print("no video in database")
                     
+                }
+            }
+        }
+    }
+}
+
+// Audio Messages
+func uploadAudio(audioPath: String, chatRoomId: String, view: UIView, completion: @escaping(_ audioLink: String?) -> Void) {
+    let progressHUD = MBProgressHUD.showAdded(to: view, animated: true)
+    progressHUD.mode = .determinateHorizontalBar
+    let dateString = dateFormatter().string(from: Date())
+    let audioFileName = "AudioMessages/" + FUser.currentId() + "/" + chatRoomId + "/" + dateString + ".m4a"
+    let audio = NSData(contentsOfFile: audioPath)
+    let storageReference = storage.reference(forURL: kFILEREFERENCE).child(audioFileName)
+    var task: StorageUploadTask!
+    task = storageReference.putData(audio! as Data, metadata: nil, completion: { (metadata, error) in
+        task.removeAllObservers()
+        progressHUD.hide(animated: true)
+        
+        if error != nil {
+            print(error!.localizedDescription) // if user cannot upload video
+            return
+        }
+        
+        storageReference.downloadURL(completion: { (url, error) in
+            guard let downloadURL = url else {
+                completion(nil)
+                return
+            }
+            completion(downloadURL.absoluteString)
+        })
+    })
+    task.observe(StorageTaskStatus.progress) { (snapshot) in
+        progressHUD.progress = Float((snapshot.progress?.completedUnitCount)!) / Float((snapshot.progress?.totalUnitCount)!)
+    }
+}
+
+func downloadAudio(audioUrl: String, completion: @escaping(_ audioFileName: String?) -> Void) {
+    let audioURL = NSURL(string: audioUrl)
+    let audioFileName = (audioUrl.components(separatedBy: "%").last!).components(separatedBy: "?").first!
+    
+    if fileExistAtPath(path: audioFileName) {
+        // Exist
+        completion(audioFileName)
+    } else {
+        // not
+        let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
+        downloadQueue.async {
+            let data = NSData(contentsOf: audioURL! as URL)
+            
+            if data != nil {
+                var docURL = getDocumentsURL()
+                docURL = docURL.appendingPathComponent(audioFileName, isDirectory: false)
+                data!.write(to: docURL, atomically: true)
+                
+                DispatchQueue.main.async {
+                    completion(audioFileName)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    print("no audio in database")
+                    completion(nil)
                 }
             }
         }

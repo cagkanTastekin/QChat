@@ -4,7 +4,7 @@
 target 'QChat' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
- 
+
   pod 'Firebase/Database'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
@@ -16,13 +16,13 @@ target 'QChat' do
   pod 'IQAudioRecorderController'
 
   pod 'JSQMessagesViewController', '7.3.3'
-  pod 'IDMPhotoBrowser'
+  pod 'SKPhotoBrowser'
 
-  pod 'ImagePicker'
-  
+  pod 'Gallery'
+
   pod 'MaterialTextField'
   pod 'IQKeyboardManagerSwift'
- 
+
   # Pods for QChat
 
 end

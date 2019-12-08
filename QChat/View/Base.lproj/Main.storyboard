@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -752,7 +752,36 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4G-9A-L5a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4738" y="-646"/>
+            <point key="canvasLocation" x="4764" y="-646"/>
+        </scene>
+        <!--Map View Cont-->
+        <scene sceneID="qmv-aS-5TL">
+            <objects>
+                <viewController restorationIdentifier="MapVC" storyboardIdentifier="MapVC" id="iBR-sp-WHA" customClass="MapViewCont" customModule="QChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F4L-s7-Efi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-ff-S11">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GFx-ff-S11" firstAttribute="trailing" secondItem="7zm-lr-JAz" secondAttribute="trailing" id="RRr-u1-eQt"/>
+                            <constraint firstItem="GFx-ff-S11" firstAttribute="leading" secondItem="7zm-lr-JAz" secondAttribute="leading" id="ReW-9e-6Fz"/>
+                            <constraint firstAttribute="bottom" secondItem="GFx-ff-S11" secondAttribute="bottom" id="fQJ-8B-Han"/>
+                            <constraint firstItem="GFx-ff-S11" firstAttribute="top" secondItem="F4L-s7-Efi" secondAttribute="top" id="v6K-uD-90h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7zm-lr-JAz"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="GFx-ff-S11" id="TBi-0r-0Ja"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JyK-DY-Gjm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5410.144927536232" y="-646.20535714285711"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="uoR-8u-Lu6">

@@ -30,9 +30,9 @@ class IncomingMessage {
         case kVIDEO:
             message = createVideoMessage(messageDictionary: messageDictionary)
         case kAUDIO:
-            print("create audio message")
+            message = createAudioMessage(messageDictionary: messageDictionary)
         case kLOCATION:
-            print("create location message")
+            message = createLocationMessage(messageDictionary: messageDictionary)
         default:
             print("unknown message type")
         }
@@ -125,6 +125,65 @@ class IncomingMessage {
             })
             self.collectionView.reloadData()
         }
+        return JSQMessage(senderId: userId, senderDisplayName: name, date: date, media: mediaItem)
+    }
+    
+    // Create Audio Message
+    func createAudioMessage(messageDictionary: NSDictionary) -> JSQMessage {
+        let name = messageDictionary[kSENDERNAME] as? String
+        let userId = messageDictionary[kSENDERID] as? String
+        
+        var date: Date!
+        
+        if let created = messageDictionary[kDATE] {
+            if (created as! String).count != 14 {
+                date = Date()
+            } else {
+                date = dateFormatter().date(from: created as! String)
+            }
+        } else {
+            date = Date()
+        }
+        let audioItem = JSQAudioMediaItem(data: nil)
+        audioItem.appliesMediaViewMaskAsOutgoing = returnOutGoingStatusForUSer(senderId: userId!)
+        let audioMessage = JSQMessage(senderId: userId!, displayName: name!, media: audioItem)
+        
+        // Download Audio
+        downloadAudio(audioUrl: messageDictionary[kAUDIO] as! String) { (fileName) in
+            let url = NSURL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName!))
+            let audioData = try? Data(contentsOf: url as URL)
+            audioItem.audioData = audioData
+            self.collectionView.reloadData()
+        }
+        return audioMessage!
+    }
+    
+    // Create Location Message
+    func createLocationMessage(messageDictionary: NSDictionary) -> JSQMessage {
+        let name = messageDictionary[kSENDERNAME] as? String
+        let userId = messageDictionary[kSENDERID] as? String
+        
+        var date: Date!
+        
+        if let created = messageDictionary[kDATE] {
+            if (created as! String).count != 14 {
+                date = Date()
+            } else {
+                date = dateFormatter().date(from: created as! String)
+            }
+        } else {
+            date = Date()
+        }
+        
+        let latitude = messageDictionary[kLATITUDE] as? Double
+        let longitude = messageDictionary[kLONGITUDE] as? Double
+        let mediaItem = JSQLocationMediaItem(location: nil)
+        mediaItem?.appliesMediaViewMaskAsOutgoing = returnOutGoingStatusForUSer(senderId: userId!)
+        let location = CLLocation(latitude: latitude!, longitude: longitude!)
+        mediaItem?.setLocation(location, withCompletionHandler: {
+            self.collectionView.reloadData()
+        })
+        
         return JSQMessage(senderId: userId, senderDisplayName: name, date: date, media: mediaItem)
     }
     
