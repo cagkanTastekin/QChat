@@ -121,7 +121,7 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         
         let muteAction = UIContextualAction(style: .normal, title: muteTitle) { (action, view, performed) in
-            print("Pushed Mute")
+            self.updatePushMembers(recent: tempRecent, mute: mute)
             performed(true)
         }
         
@@ -242,7 +242,19 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
-
+    
+    // MARK: Helper Functions
+    func updatePushMembers(recent: NSDictionary, mute: Bool) {
+        var membersToPush = recent[kMEMBERSTOPUSH] as! [String]
+        
+        if mute {
+            let index = membersToPush.firstIndex(of: FUser.currentId())!
+            membersToPush.remove(at: index)
+        } else {
+            membersToPush.append(FUser.currentId())
+        }
+        
+        updateExistingRecentWithNewValues(chatRoomId: recent[kCHATROOMID] as! String, members: recent[kMEMBERS] as! [String], withValues: [kMEMBERSTOPUSH : membersToPush])
+    }
+    
 }
-
-

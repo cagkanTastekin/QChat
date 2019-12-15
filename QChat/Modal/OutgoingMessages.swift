@@ -47,9 +47,29 @@ class OutgoingMessage {
             reference(collectionReference: .Message).document(memberId).collection(chatRoomId).document(messageId).setData(messageDictionary as! [String : Any])
         }
         
-        // update Recent chat
+        updateRecents(chatRoomId: chatRoomId, lastMessage: messageDictionary[kMESSAGE] as! String)
         // send push notification
     }
     
+    class func deleteMessage(withId: String, chatRoomId: String) {
+        reference(collectionReference: .Message).document(FUser.currentId()).collection(chatRoomId).document(withId).delete()
+    }
+    
+    class func updateMessage(withId: String, chatRoomId: String, memberIds: [String]) {
+        let readDate = dateFormatter().string(from: Date())
+        let values = [kSTATUS: kREAD, kREADDATE: readDate]
+        
+        for userId in memberIds {
+            reference(collectionReference: .Message).document(userId).collection(chatRoomId).document(withId).getDocument { (snapshot, error) in
+                guard let snapshot = snapshot else { return }
+                
+                if snapshot.exists{
+                    reference(collectionReference: .Message).document(userId).collection(chatRoomId).document(withId).updateData(values)
+                }
+                
+            }
+        }
+        
+    }
     
 }

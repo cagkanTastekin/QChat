@@ -22,7 +22,7 @@ public let kFILEREFERENCE = "gs://qchat-8932d.appspot.com"
 public let kONESIGNALAPPID = ""
 public let kSINCHKEY = ""
 public let kSINCHSECRET = ""
-public let kAPPURL = ""
+public let kAPPURL = "App Link"
 
 // Firebase Headers
 public let kUSER_PATH = "User"

@@ -120,6 +120,20 @@ class UsersTableViewCont: UITableViewController, UISearchResultsUpdating, UsersC
             user = users![indexPath.row]
         }
         
+        if !checkBlockedStatus(withUser: user) {
+            let chatVC = ChatViewCont()
+            chatVC.titleName = user.firstname
+            chatVC.membersToPush = [FUser.currentId(), user.objectId]
+            chatVC.memberIds = [FUser.currentId(), user.objectId]
+            chatVC.chatRoomId = startPrivateChat(user1: FUser.currentUser()!, user2: user)
+            chatVC.isGroup = false
+            chatVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        } else {
+            ProgressHUD.showError("This user is not avaliable for chat")
+        }
+        
         startPrivateChat(user1: FUser.currentUser()!, user2: user)
         
     }

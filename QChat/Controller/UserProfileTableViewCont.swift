@@ -9,6 +9,7 @@
 // Storyboard ID & Restoration ID --> UserProfileTVC
 
 import UIKit
+import ProgressHUD
 
 class UserProfileTableViewCont: UITableViewController {
 
@@ -36,7 +37,19 @@ class UserProfileTableViewCont: UITableViewController {
     
     // Message action
     @IBAction func onClickMessage(_ sender: UIButton) {
-        // chat with user
+        if !checkBlockedStatus(withUser: user!) {
+            let chatVC = ChatViewCont()
+            chatVC.titleName = user!.firstname
+            chatVC.membersToPush = [FUser.currentId(), user!.objectId]
+            chatVC.memberIds = [FUser.currentId(), user!.objectId]
+            chatVC.chatRoomId = startPrivateChat(user1: FUser.currentUser()!, user2: user!)
+            chatVC.isGroup = false
+            chatVC.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        } else {
+            ProgressHUD.showError("This user is not avaliable for chat")
+        }
     }
     
     // Block user action
@@ -56,6 +69,8 @@ class UserProfileTableViewCont: UITableViewController {
             }
             self.updateBlockStatus()
         }
+        
+        blockUser(userToBlock: user!)
     }
     
     // MARK: - Table view data source

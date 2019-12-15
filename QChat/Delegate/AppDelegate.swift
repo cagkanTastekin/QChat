@@ -22,15 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         IQKeyboardManager.shared.enable = true
         return true
     }
-    /*
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        locationManagerStart()
-    }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        locationManagerStop()
-    }
-    */
     // MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
