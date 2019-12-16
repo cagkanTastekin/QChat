@@ -24,6 +24,7 @@
 		3E180340237867FE00479522 /* IncomingMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E18033F237867FE00479522 /* IncomingMessages.swift */; };
 		3E1F2335236AC91C00166FF4 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2334236AC91C00166FF4 /* DateFormatter.swift */; };
 		3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */; };
+		3E362EFE23A812CA00B066DA /* EditProfileTableViewCont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E362EFD23A812CA00B066DA /* EditProfileTableViewCont.swift */; };
 		3E40343A239BD27900E19802 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E403439239BD27900E19802 /* Reachability.swift */; };
 		3E4479D12369766900F93709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D02369766900F93709 /* AppDelegate.swift */; };
 		3E4479D32369766900F93709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4479D22369766900F93709 /* SceneDelegate.swift */; };
@@ -72,6 +73,7 @@
 		3E18033F237867FE00479522 /* IncomingMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessages.swift; sourceTree = "<group>"; };
 		3E1F2334236AC91C00166FF4 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		3E1F2336236AC94900166FF4 /* ImageInitilazer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInitilazer.swift; sourceTree = "<group>"; };
+		3E362EFD23A812CA00B066DA /* EditProfileTableViewCont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCont.swift; sourceTree = "<group>"; };
 		3E403439239BD27900E19802 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3E4479CD2369766900F93709 /* QChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4479D02369766900F93709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				3E10560023A69A7900CD5B0D /* BlockedUsersViewCont.swift */,
 				3E10560223A6AD1600CD5B0D /* BackgroundCollectionViewCont.swift */,
 				3E10560623A6BEEC00CD5B0D /* TCViewCont.swift */,
+				3E362EFD23A812CA00B066DA /* EditProfileTableViewCont.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				3E09C6A323704FA3000AEA8C /* UserProfileTableViewCont.swift in Sources */,
 				3E918A06236EF1440021B24D /* UsersTableViewCont.swift in Sources */,
 				3E10560523A6AD7000CD5B0D /* BackgroundCollectionCell.swift in Sources */,
+				3E362EFE23A812CA00B066DA /* EditProfileTableViewCont.swift in Sources */,
 				3E1F2337236AC94900166FF4 /* ImageInitilazer.swift in Sources */,
 				3E0E77B4239D3DD100548095 /* MapViewCont.swift in Sources */,
 				3E1055FD23A6990D00CD5B0D /* BlockedUsersCell.swift in Sources */,
