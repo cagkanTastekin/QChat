@@ -386,6 +386,60 @@
             </objects>
             <point key="canvasLocation" x="1336" y="117"/>
         </scene>
+        <!--Contacts Table View Cont-->
+        <scene sceneID="a7p-gb-0B8">
+            <objects>
+                <tableViewController restorationIdentifier="ContactsTVC" storyboardIdentifier="ContactsTVC" id="VdE-6Y-vSx" customClass="ContactsTableViewCont" customModule="QChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DVB-Ss-o50">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="H1c-Hf-byu" customClass="ContactsCell" customModule="QChat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H1c-Hf-byu" id="vGX-pG-usm">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="DiK-VT-DqC">
+                                            <rect key="frame" x="20" y="10" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="x6b-1k-MIJ"/>
+                                                <constraint firstAttribute="width" constant="80" id="xvZ-Xf-csb"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKe-1x-6cy">
+                                            <rect key="frame" x="108" y="38.666666666666664" width="286" height="23"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MKe-1x-6cy" firstAttribute="leading" secondItem="DiK-VT-DqC" secondAttribute="trailing" constant="8" id="1sr-9w-oiM"/>
+                                        <constraint firstItem="DiK-VT-DqC" firstAttribute="centerY" secondItem="vGX-pG-usm" secondAttribute="centerY" id="68X-ky-1Rd"/>
+                                        <constraint firstItem="MKe-1x-6cy" firstAttribute="centerY" secondItem="vGX-pG-usm" secondAttribute="centerY" id="7bd-vw-vuO"/>
+                                        <constraint firstItem="DiK-VT-DqC" firstAttribute="leading" secondItem="vGX-pG-usm" secondAttribute="leading" constant="20" id="KPh-bQ-4e7"/>
+                                        <constraint firstItem="MKe-1x-6cy" firstAttribute="trailing" secondItem="vGX-pG-usm" secondAttribute="trailingMargin" id="y8r-qA-Axs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imgAvatar" destination="DiK-VT-DqC" id="PzT-17-kuS"/>
+                                    <outlet property="lblFullName" destination="MKe-1x-6cy" id="kE6-g4-AHe"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VdE-6Y-vSx" id="QiB-PQ-1G3"/>
+                            <outlet property="delegate" destination="VdE-6Y-vSx" id="aDs-AL-E5W"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2g1-Z1-Cbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1503" y="812"/>
+        </scene>
         <!--Chats-->
         <scene sceneID="wAE-tm-Pf4">
             <objects>

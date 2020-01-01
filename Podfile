@@ -23,6 +23,8 @@ target 'QChat' do
   pod 'MaterialTextField'
   pod 'IQKeyboardManagerSwift'
 
+  pod 'libPhoneNumber-iOS', '~> 0.8'
+
   # Pods for QChat
 
 end
