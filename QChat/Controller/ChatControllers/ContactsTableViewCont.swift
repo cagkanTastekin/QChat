@@ -291,10 +291,11 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
         //MARK: LoadUsers
      
         func getContactsOfCurrentUser() {
-     
+            print("yyyyyyyyyyyyyyy", FUser.currentId())
             if FUser.currentUser()!.contacts.count > 0 {
+                print("have contacts")
                 getUsersFromFirestore(withIds: FUser.currentUser()!.contacts) { (currentContacts) in
-     
+                    print(".......have : ", currentContacts.count)
                     self.matchedUsers = currentContacts
                     self.splitDataInToSection()
                     self.lookForNewUsersInBackground()
@@ -307,7 +308,7 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
      
      
         func lookForNewUsersInBackground() {
-     
+            
             //to limit the load of users, need to get only the users from my country (update the code later), better to compare current users phone numbers to server and download users that match and not download all and compare the current user contacts
             reference(collectionReference: .User).whereField(kCOUNTRY, isEqualTo: FUser.currentUser()!.country).getDocuments { (snapshot, error) in
      
@@ -316,15 +317,16 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
                 }
      
                 if !snapshot.isEmpty {
-     
+                    print("look for users")
                     self.users.removeAll()
      
                     for userDictionary in snapshot.documents {
+                        print("have user")
                         let userDictionary = userDictionary.data() as NSDictionary
                         let fUser = FUser(_dictionary: userDictionary)
      
                         if fUser.objectId != FUser.currentId() && !FUser.currentUser()!.contacts.contains(fUser.objectId) {
-     
+                            
                             self.users.append(fUser)
                         }
                     }
@@ -336,11 +338,11 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
         }
      
         func compareUsers() {
-     
+            print("compare")
             var usersContacts = FUser.currentUser()!.contacts
      
             for user in users {
-     
+                print(user.objectId)
                 if user.phoneNumber != "" {
      
                     let contact = searchForContactUsingPhoneNumber(phoneNumber: user.phoneNumber)
@@ -348,7 +350,7 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
                     //if we have a match, we add to our array to display them
                     if contact.count > 0 {
                         //add to contacts array
-     
+                        print("contact > 0")
                         matchedUsers.append(user)
                         usersContacts.append(user.objectId)
                     }
@@ -368,7 +370,7 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
         //MARK: Contacts
      
         func searchForContactUsingPhoneNumber(phoneNumber: String) -> [CNContact] {
-     
+            print("search for contact")
             var result: [CNContact] = []
      
             //go through all contacts
@@ -383,11 +385,19 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
                     for phoneNumber in contact.phoneNumbers {
      
                         let fullMobNumVar = phoneNumber.value
+                        print(".......", fullMobNumVar)
                         let countryCode = fullMobNumVar.value(forKey: "countryCode") as? String
                         let phoneNumber = fullMobNumVar.value(forKey: "digits") as? String
-     
-                        let contactNumber = removeCountryCode(countryCodeLetters: countryCode!, fullPhoneNumber: phoneNumber!)
-                        print("contact is \(contactNumber)")
+                        
+                        var contactNumber: String!
+                        
+                        
+                        if countryCode != nil {
+                            contactNumber = removeCountryCode(countryCodeLetters: countryCode!, fullPhoneNumber: phoneNumber!)
+                        } else {
+                            contactNumber = phoneNumber!
+                        }
+                        print("contact is \(String(describing: contactNumber))")
                         //compare phoneNumber of contact with given user's phone number
                         if contactNumber == phoneNumberToCompareAgainst {
                             result.append(contact)

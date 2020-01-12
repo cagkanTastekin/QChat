@@ -254,6 +254,7 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         updateExistingRecentWithNewValues(chatRoomId: recent[kCHATROOMID] as! String, members: recent[kMEMBERS] as! [String], withValues: [kMEMBERSTOPUSH : membersToPush])
     }
     
+    // HERE!!
     func selectUserForChat(isGroup: Bool) {
         let contactsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContactsTVC") as! ContactsTableViewCont
         contactsVC.isGroup = isGroup
