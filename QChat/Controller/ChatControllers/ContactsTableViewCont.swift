@@ -277,14 +277,14 @@ class ContactsTableViewCont: UITableViewController, UISearchResultsUpdating, Con
         }
      
         @objc func nextButtonPressed() {
-/*
-            let newGroupVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newGroupView") as! NewGroupViewController
+
+            let newGroupVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewGroupVC") as! NewGroupViewCont
      
             newGroupVC.memberIds = memberIdsOfGroupChat
             newGroupVC.allMembers = membersOfGroupChat
      
             self.navigationController?.pushViewController(newGroupVC, animated: true)
-*/
+
         }
      
      
