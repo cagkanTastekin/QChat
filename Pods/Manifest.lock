@@ -140,6 +140,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - ProgressHUD (2.60)
   - Protobuf (3.10.0)
+  - RNCryptor (5.1.0)
   - SCSiriWaveformView (1.1.1)
   - SKPhotoBrowser (6.1.0)
 
@@ -157,6 +158,7 @@ DEPENDENCIES:
   - MaterialTextField
   - MBProgressHUD
   - ProgressHUD
+  - RNCryptor
   - SKPhotoBrowser
 
 SPEC REPOS:
@@ -192,6 +194,7 @@ SPEC REPOS:
     - nanopb
     - ProgressHUD
     - Protobuf
+    - RNCryptor
     - SCSiriWaveformView
     - SKPhotoBrowser
 
@@ -227,9 +230,10 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
 
-PODFILE CHECKSUM: 4cfd174e6881e031c800e26294a71e9671e33570
+PODFILE CHECKSUM: 91990a07788e827cd989ab5c8a9faac4bc6192b3
 
 COCOAPODS: 1.8.4

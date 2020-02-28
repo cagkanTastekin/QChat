@@ -66,7 +66,7 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
             
             group.saveGroup()
             
-            // Create group recent
+            startGroupChat(group: group)
             
             let chatVC = ChatViewCont()
             chatVC.titleName = group.groupDictionary[kNAME] as? String

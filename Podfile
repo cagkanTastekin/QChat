@@ -24,6 +24,7 @@ target 'QChat' do
   pod 'IQKeyboardManagerSwift'
 
   pod 'libPhoneNumber-iOS', '~> 0.8'
+  pod 'RNCryptor'
 
   # Pods for QChat
 

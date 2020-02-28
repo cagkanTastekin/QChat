@@ -156,6 +156,18 @@ func clearRecentCounterItem(recent: NSDictionary) {
     reference(collectionReference: .Recent).document(recent[kRECENTID] as! String).updateData([kCOUNTER : 0])
 }
 
+// group chat
+func startGroupChat(group: Group) {
+    let chatRoomId = group.groupDictionary[kGROUPID] as! String
+    let members = group.groupDictionary[kMEMBERS] as! [String]
+    
+    createRecent(members: members, chatRoomId: chatRoomId, withUserUserName: group.groupDictionary[kNAME] as! String, typeOfChat: kGROUP, users: nil, avatarofGroup: group.groupDictionary[kAVATAR] as? String)
+}
+
+func createRecentsForNewMembers(groupId: String, groupName: String, membersToPush: [String], avatar: String) {
+    createRecent(members: membersToPush, chatRoomId: groupId, withUserUserName: groupName, typeOfChat: kGROUP, users: nil, avatarofGroup: avatar)
+}
+
 func updateExistingRecentWithNewValues(chatRoomId: String, members: [String], withValues: [String : Any]) {
     reference(collectionReference: .Recent).whereField(kCHATROOMID, isEqualTo: chatRoomId).getDocuments { (snapshot, error) in
         guard let snapshot = snapshot else { return }

@@ -145,7 +145,7 @@ class ChatsViewCont: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Show Chat view
         let chatVC = ChatViewCont()
         chatVC.hidesBottomBarWhenPushed = true
-        chatVC.titleName = recent[kWITHUSERUSERNAME] as? String
+        chatVC.titleName = recent[kWITHUSERFULLNAME] as? String
         chatVC.memberIds = (recent[kMEMBERS] as? [String])!
         chatVC.membersToPush = (recent[kMEMBERSTOPUSH] as? [String])!
         chatVC.chatRoomId = (recent[kCHATROOMID] as? String)!

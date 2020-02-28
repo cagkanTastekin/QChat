@@ -95,12 +95,17 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         createTypingObserver()
+        loadUserDefaults()
         
         JSQMessagesCollectionViewCell.registerMenuAction(#selector(delete))
         
         
         navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.backAction))]
+        
+        if isGroup! {
+            getCurrentGroup(withId: chatRoomId)
+        }
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
@@ -380,15 +385,17 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
         
         // text message
         if let text = text {
-            outgoingMessage = OutgoingMessage(message: text, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kTEXT)
+            let encryptedText = Encryption.encryptText(chatRoomId: chatRoomId, message: text)
+            
+            outgoingMessage = OutgoingMessage(message: encryptedText, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kTEXT)
         }
         
         // picture message
         if let pic = picture {
             uploadImage(image: pic, chatRoomId: chatRoomId, view: self.navigationController!.view) { (imageLink) in
                 if imageLink != nil {
-                    let text = "[\(kPICTURE)]"
-                    outgoingMessage = OutgoingMessage(message: text, pictureLink: imageLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kPICTURE)
+                    let encryptedText = Encryption.encryptText(chatRoomId: self.chatRoomId, message: "[\(kPICTURE)]")
+                    outgoingMessage = OutgoingMessage(message: encryptedText, pictureLink: imageLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kPICTURE)
                     
                     JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     self.finishSendingMessage()
@@ -405,8 +412,8 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
             
             uploadVideo(video: videoData!, chatRoomId: chatRoomId, view: self.navigationController!.view) { (videoLink) in
                 if videoLink != nil {
-                    let text = "[\(kVIDEO)]"
-                    outgoingMessage = OutgoingMessage(message: text, video: videoLink!, thumbNail: thumbNail! as NSData, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kVIDEO)
+                    let encryptedText = Encryption.encryptText(chatRoomId: self.chatRoomId, message: "[\(kVIDEO)]")
+                    outgoingMessage = OutgoingMessage(message: encryptedText, video: videoLink!, thumbNail: thumbNail! as NSData, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kVIDEO)
                     JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     self.finishSendingMessage()
                     
@@ -421,8 +428,8 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
             uploadAudio(audioPath: audioPath, chatRoomId: chatRoomId, view: (self.navigationController?.view)!) { (audioLink) in
                 
                 if audioLink != nil {
-                    let text = "[\(kAUDIO)]"
-                    outgoingMessage = OutgoingMessage(message: text, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kAUDIO)
+                    let encryptedText = Encryption.encryptText(chatRoomId: self.chatRoomId, message: "[\(kAUDIO)]")
+                    outgoingMessage = OutgoingMessage(message: encryptedText, audio: audioLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kAUDIO)
                     
                     JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     self.finishSendingMessage()
@@ -438,9 +445,9 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
             let latitude: NSNumber = NSNumber(value: appDelegate.coordinates!.latitude)
             let longitude: NSNumber = NSNumber(value: appDelegate.coordinates!.longitude)
             
-            let text = "[\(kLOCATION)]"
-            
-            outgoingMessage = OutgoingMessage(message: text, latitude: latitude, longitude: longitude, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kLOCATION)
+            let encryptedText = Encryption.encryptText(chatRoomId: self.chatRoomId, message: "[\(kLOCATION)]")
+
+            outgoingMessage = OutgoingMessage(message: encryptedText, latitude: latitude, longitude: longitude, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kLOCATION)
             
         }
         
@@ -645,7 +652,10 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
     }
     
     @objc func showGroup(){
-        print("show group button pressed")
+        let groupVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GrVC") as! GroupViewCont
+        
+        groupVC.group = group!
+        self.navigationController?.pushViewController(groupVC, animated: true)
     }
     
     @objc func showUserProfile(){
@@ -779,6 +789,16 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
         btnAvatar.addTarget(self, action: #selector(self.showUserProfile), for: .touchUpInside)
     }
     
+    func setUIForGroupChat() {
+        imageFromData(pictureData: group![kAVATAR] as! String) { (image) in
+            if image != nil {
+                btnAvatar.setImage(image!.circleMasked, for: .normal)
+            }
+        }
+        lblTitle.text = titleName
+        lblSubTitle.text = ""
+    }
+    
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let video = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL
@@ -849,6 +869,30 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
     }
     
     // MARK: HelperFunctions
+    func loadUserDefaults() {
+        firstLoad = userDefaults.bool(forKey: kFIRSTRUN)
+        
+        if !firstLoad! {
+            userDefaults.set(true, forKey: kFIRSTRUN)
+            userDefaults.set(showAvatar, forKey: kSHOWAVATAR)
+            userDefaults.synchronize()
+        }
+        
+        showAvatar = userDefaults.bool(forKey: kSHOWAVATAR)
+        checkForBackgroundImage()
+    }
+    
+    func checkForBackgroundImage() {
+        if userDefaults.object(forKey: kBACKGROUNDIMAGE) != nil {
+            self.collectionView.backgroundColor = .clear
+            let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            imageview.image =  UIImage(named: userDefaults.object(forKey: kBACKGROUNDIMAGE) as! String)!
+            
+            imageview.contentMode = .scaleAspectFill
+            self.view.insertSubview(imageview, at: 0)
+        }
+    }
+    
     func addNewPictureMessageLink(link: String) {
         allPictureMessages.append(link)
     }
@@ -904,6 +948,17 @@ class ChatViewCont: JSQMessagesViewController, UINavigationControllerDelegate, U
         
         if updatedChatListener != nil {
             updatedChatListener!.remove()
+        }
+    }
+    
+    func getCurrentGroup(withId: String) {
+        reference(collectionReference: .Group).document(withId).getDocument { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            
+            if snapshot.exists {
+                self.group = snapshot.data() as NSDictionary?
+                self.setUIForGroupChat()
+            }
         }
     }
     
