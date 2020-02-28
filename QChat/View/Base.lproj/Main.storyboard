@@ -302,33 +302,37 @@
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="CRc-Rq-qPf">
                                 <rect key="frame" x="157" y="125" width="100" height="100"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Gzx-Ya-FZq"/>
                                     <constraint firstAttribute="width" constant="100" id="f74-sS-e6B"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Osb-bd-igN" appends="YES" id="Tjn-gO-ZtY"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZcD-lP-Hsy" customClass="MFTextField">
-                                <rect key="frame" x="20" y="245" width="374" height="34"/>
+                                <rect key="frame" x="20" y="245" width="374" height="40"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y8e-Rv-iaO" customClass="MFTextField">
-                                <rect key="frame" x="20" y="299" width="374" height="34"/>
+                                <rect key="frame" x="20" y="305" width="374" height="39.666666666666686"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt7-VU-SWH" customClass="MFTextField">
-                                <rect key="frame" x="20" y="353" width="374" height="34"/>
+                                <rect key="frame" x="20" y="364.66666666666669" width="374" height="40"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hjt-Y5-fLY" customClass="MFTextField">
-                                <rect key="frame" x="20" y="407" width="374" height="34"/>
+                                <rect key="frame" x="20" y="424.66666666666669" width="374" height="39.666666666666686"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Un-B7-lDD" customClass="MFTextField">
-                                <rect key="frame" x="20" y="461" width="374" height="34"/>
+                                <rect key="frame" x="20" y="484.33333333333331" width="374" height="39.999999999999943"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
@@ -375,6 +379,7 @@
                         <outlet property="imgAvatar" destination="CRc-Rq-qPf" id="eWY-In-Wr2"/>
                         <outlet property="imgBackground" destination="s8R-Gz-3lA" id="N0c-6o-UAt"/>
                         <outlet property="lblTag" destination="u5Y-zh-K8U" id="MhC-yh-QWT"/>
+                        <outlet property="tapAvatar" destination="Osb-bd-igN" id="xI9-PF-QTg"/>
                         <outlet property="txtCity" destination="hjt-Y5-fLY" id="AA9-so-TRw"/>
                         <outlet property="txtCountry" destination="Qt7-VU-SWH" id="XLt-Cx-Vdv"/>
                         <outlet property="txtName" destination="ZcD-lP-Hsy" id="6AR-DY-Gop"/>
@@ -383,6 +388,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTV-OZ-rNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Osb-bd-igN" userLabel="AvatarTap">
+                    <connections>
+                        <action selector="tappedAvatar:" destination="R4w-KY-YQV" id="qRp-Iz-Uld"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1336" y="117"/>
         </scene>

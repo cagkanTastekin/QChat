@@ -25,6 +25,7 @@ target 'QChat' do
 
   pod 'libPhoneNumber-iOS', '~> 0.8'
   pod 'RNCryptor'
+  pod 'ImagePicker'
 
   # Pods for QChat
 

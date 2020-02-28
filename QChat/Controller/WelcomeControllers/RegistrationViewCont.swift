@@ -11,8 +11,9 @@
 import UIKit
 import ProgressHUD
 import MaterialTextField
+import ImagePicker
 
-class RegistrationViewCont: UIViewController {
+class RegistrationViewCont: UIViewController, ImagePickerDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var btnCancel: UIButton!
@@ -26,6 +27,7 @@ class RegistrationViewCont: UIViewController {
     @IBOutlet weak var txtCountry: MFTextField!
     @IBOutlet weak var txtCity: MFTextField!
     @IBOutlet weak var txtPhone: MFTextField!
+    @IBOutlet var tapAvatar: UITapGestureRecognizer!
     
     var email:String!
     var password:String!
@@ -41,6 +43,7 @@ class RegistrationViewCont: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        imgAvatar.isUserInteractionEnabled = true
     }
     
     // MARK: IBActions
@@ -52,7 +55,6 @@ class RegistrationViewCont: UIViewController {
     // Register action
     @IBAction func onClickRegister(_ sender: UIButton) {
         dismissKeyboard()
-        cleanAvatarImage()
         
         ProgressHUD.show("Registering...")
         
@@ -86,8 +88,17 @@ class RegistrationViewCont: UIViewController {
     @IBAction func onClickCancel(_ sender: UIButton) {
         dismissKeyboard()
         cleanTextFields()
-        cleanAvatarImage()
         goSignUpView()
+    }
+    
+    
+    @IBAction func tappedAvatar(_ sender: Any) {
+        let imagePickerController = ImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
+        
+        present(imagePickerController, animated: true, completion: nil)
+        dismissKeyboard()
     }
     
     // MARK: HelperFunctions
@@ -118,11 +129,6 @@ class RegistrationViewCont: UIViewController {
         txtPhone.text = ""
     }
     
-    // Clean avatar
-    func cleanAvatarImage(){
-        imgAvatar.image = UIImage(named: "avatarPlaceHolder")
-    }
-    
     // Dismiss keyboard
     func dismissKeyboard(){
         self.view.endEditing(false)
@@ -143,7 +149,7 @@ class RegistrationViewCont: UIViewController {
                                            kCITY : city,
                                            kPHONE : phone] as [String : Any]
         
-        if avatarImage?.images == nil {
+        if avatarImage == nil {
             imageFromInitials(firstName: name, lastName: surname){(avatarInitials) in
                 let avatarIMG = avatarInitials.jpegData(compressionQuality: 0.7)
                 let avatar = avatarIMG!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
@@ -151,7 +157,7 @@ class RegistrationViewCont: UIViewController {
                 self.finishRegistration(withValues: tempDictionary)
             }
         } else {
-            let avatarData = avatarImage?.jpegData(compressionQuality: 0.7)
+            let avatarData = avatarImage?.jpegData(compressionQuality: 0.5)
             let avatar = avatarData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             tempDictionary[kAVATAR] = avatar
             self.finishRegistration(withValues: tempDictionary)
@@ -193,5 +199,25 @@ class RegistrationViewCont: UIViewController {
         txtField.leftView = leftImageView
         txtField.leftViewMode = .always
     }
+    
+    // MARK: Image Picket Delegate
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        
+        if images.count > 0 {
+            self.avatarImage = images.first!
+            self.imgAvatar.image = self.avatarImage?.circleMasked
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 }

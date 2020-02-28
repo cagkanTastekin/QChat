@@ -10,9 +10,10 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
-class EditProfileTableViewCont: UITableViewController {
-
+class EditProfileTableViewCont: UITableViewController, ImagePickerDelegate {
+    
     // MARK: Outlets
     @IBOutlet weak var btnSaveButton: UIBarButtonItem!
     @IBOutlet weak var imgAvatar: UIImageView!
@@ -52,7 +53,7 @@ class EditProfileTableViewCont: UITableViewController {
             var withValues = [kFIRSTNAME : txtName.text!, kLASTNAME : txtSurname.text!, kFULLNAME : fullName]
             
             if avatarImage != nil {
-                let avatarData = avatarImage!.jpegData(compressionQuality: 0.7)!
+                let avatarData = avatarImage!.jpegData(compressionQuality: 0.4)!
                 let avatarString = avatarData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
                 withValues[kAVATAR] = avatarString
             }
@@ -76,7 +77,11 @@ class EditProfileTableViewCont: UITableViewController {
     }
     
     @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
-        print("show Image Picker")
+        let imagePicker = ImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.imageLimit = 1
+        
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: Setup UI
@@ -95,5 +100,26 @@ class EditProfileTableViewCont: UITableViewController {
             }
         }
     }
+    
+    // MARK: Image Picker Delegate
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        
+        if images.count > 0 {
+            self.avatarImage = images.first!
+            self.imgAvatar.image = self.avatarImage!.circleMasked
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+
     
 }

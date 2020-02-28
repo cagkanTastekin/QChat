@@ -10,8 +10,9 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
-class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GroupMemberCollectionsCellDelegate {
+class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GroupMemberCollectionsCellDelegate, ImagePickerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var btnEditAvatar: UIButton!
@@ -56,7 +57,7 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
             var avatar = avatarData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             
             if groupIcon != nil {
-                let avatarData = groupIcon!.jpegData(compressionQuality: 0.7)!
+                let avatarData = groupIcon!.jpegData(compressionQuality: 0.4)!
                 avatar = avatarData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             }
             
@@ -109,7 +110,11 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
     func showIconOptions() {
         let optionMenu = UIAlertController(title: "Choose group icon", message: nil, preferredStyle: .actionSheet)
         let takePhotoAction = UIAlertAction(title: "Take/Choose Photo", style: .default) { (alert) in
-            print("camera")
+            let imagePicker = ImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.imageLimit = 1
+            
+            self.present(imagePicker, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in}
         
@@ -127,5 +132,24 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    // MARK: Image Picker Delegate
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        
+        if images.count > 0 {
+            self.groupIcon = images.first!
+            self.imgGroupIcon.image = self.groupIcon!.circleMasked
+            self.btnEditAvatar.isHidden = false
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }

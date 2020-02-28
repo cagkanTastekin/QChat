@@ -10,9 +10,10 @@
 
 import UIKit
 import ProgressHUD
+import ImagePicker
 
-class GroupViewCont: UIViewController {
-
+class GroupViewCont: UIViewController, ImagePickerDelegate {
+    
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var txtGroupName: UITextField!
     @IBOutlet weak var lblDescription: UILabel!
@@ -53,7 +54,7 @@ class GroupViewCont: UIViewController {
             return
         }
         
-        let avatarData = imgAvatar.image?.jpegData(compressionQuality: 0.7)!
+        let avatarData = imgAvatar.image?.jpegData(compressionQuality: 0.4)!
         let avatarString = avatarData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
         withValues = [kNAME : txtGroupName.text!, kAVATAR : avatarString!]
@@ -88,7 +89,11 @@ class GroupViewCont: UIViewController {
     func showIconOptions() {
         let optionMenu = UIAlertController(title: "Choose group icon", message: nil, preferredStyle: .actionSheet)
         let takePhotoAction = UIAlertAction(title: "Take/Choose Photo", style: .default) { (alert) in
-            print("camera")
+            let imagePickerController = ImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.imageLimit = 1
+            
+            self.present(imagePickerController, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in}
         
@@ -105,5 +110,27 @@ class GroupViewCont: UIViewController {
         
         self.present(optionMenu, animated: true, completion: nil)
     }
+    
+    // MARK: Image Picker Delegate
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        
+        if images.count > 0 {
+            self.groupIcon = images.first!
+            self.imgAvatar.image = self.groupIcon?.circleMasked
+            self.btnEdit.isHidden = false
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+
     
 }
