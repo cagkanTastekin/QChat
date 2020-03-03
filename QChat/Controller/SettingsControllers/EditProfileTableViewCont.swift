@@ -10,10 +10,10 @@
 
 import UIKit
 import ProgressHUD
-import ImagePicker
+import Gallery
 
-class EditProfileTableViewCont: UITableViewController, ImagePickerDelegate {
-    
+class EditProfileTableViewCont: UITableViewController, GalleryControllerDelegate {
+
     // MARK: Outlets
     @IBOutlet weak var btnSaveButton: UIBarButtonItem!
     @IBOutlet weak var imgAvatar: UIImageView!
@@ -77,11 +77,10 @@ class EditProfileTableViewCont: UITableViewController, ImagePickerDelegate {
     }
     
     @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
-        let imagePicker = ImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.imageLimit = 1
+        let gallery = GalleryController()
+        gallery.delegate = self
         
-        self.present(imagePicker, animated: true, completion: nil)
+        self.present(gallery, animated: true, completion: nil)
     }
     
     // MARK: Setup UI
@@ -101,25 +100,22 @@ class EditProfileTableViewCont: UITableViewController, ImagePickerDelegate {
         }
     }
     
-    // MARK: Image Picker Delegate
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.dismiss(animated: true, completion: nil)
+    
+    // MARK: Gallery Delegate
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        print("yes")
     }
     
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        
-        if images.count > 0 {
-            self.avatarImage = images.first!
-            self.imgAvatar.image = self.avatarImage!.circleMasked
-        }
-        
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        print("yes")
     }
     
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print("yes")
     }
     
-
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        print("yes")
+    }
     
 }

@@ -123,7 +123,6 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.3.0)
-  - ImagePicker (3.1.0)
   - IQAudioRecorderController (1.2.3):
     - SCSiriWaveformView
   - IQKeyboardManagerSwift (6.5.2)
@@ -139,6 +138,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - OneSignal (2.12.6)
   - ProgressHUD (2.60)
   - Protobuf (3.10.0)
   - RNCryptor (5.1.0)
@@ -152,13 +152,13 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - Gallery
-  - ImagePicker
   - IQAudioRecorderController
   - IQKeyboardManagerSwift
   - JSQMessagesViewController (= 7.3.3)
   - libPhoneNumber-iOS (~> 0.8)
   - MaterialTextField
   - MBProgressHUD
+  - OneSignal
   - ProgressHUD
   - RNCryptor
   - SKPhotoBrowser
@@ -185,7 +185,6 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
-    - ImagePicker
     - IQAudioRecorderController
     - IQKeyboardManagerSwift
     - JSQMessagesViewController
@@ -195,6 +194,7 @@ SPEC REPOS:
     - MaterialTextField
     - MBProgressHUD
     - nanopb
+    - OneSignal
     - ProgressHUD
     - Protobuf
     - RNCryptor
@@ -222,7 +222,6 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
-  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
   IQAudioRecorderController: 69a67c2e0b87bd8746cbb4de175fd7a0bf820009
   IQKeyboardManagerSwift: c75366f1f19590e8caeae45fcd5815c9289d6099
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
@@ -232,12 +231,13 @@ SPEC CHECKSUMS:
   MaterialTextField: f1a0786588e4d3610cb9bb62d2adbe9777cebbf9
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  OneSignal: a6df91542d1cf133b9dd19d89f2b533d8f2d3163
   ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
 
-PODFILE CHECKSUM: 39d87b9be7ba48b64ae8a48c957bde637aabe273
+PODFILE CHECKSUM: 9e865959dc436a9bc6fd34e97793a435bac705c1
 
 COCOAPODS: 1.8.4

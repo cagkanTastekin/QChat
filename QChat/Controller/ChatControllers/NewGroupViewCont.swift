@@ -10,9 +10,9 @@
 
 import UIKit
 import ProgressHUD
-import ImagePicker
+import Gallery
 
-class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GroupMemberCollectionsCellDelegate, ImagePickerDelegate {
+class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GroupMemberCollectionsCellDelegate, GalleryControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var btnEditAvatar: UIButton!
@@ -110,11 +110,10 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
     func showIconOptions() {
         let optionMenu = UIAlertController(title: "Choose group icon", message: nil, preferredStyle: .actionSheet)
         let takePhotoAction = UIAlertAction(title: "Take/Choose Photo", style: .default) { (alert) in
-            let imagePicker = ImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.imageLimit = 1
+            let gallery = GalleryController()
+            gallery.delegate = self
             
-            self.present(imagePicker, animated: true, completion: nil)
+            self.present(gallery, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in}
         
@@ -132,24 +131,21 @@ class NewGroupViewCont: UIViewController, UICollectionViewDataSource, UICollecti
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    // MARK: Image Picker Delegate
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.dismiss(animated: true, completion: nil)
+    // MARK: Gallery Delegate
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        print("yes")
     }
     
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        
-        if images.count > 0 {
-            self.groupIcon = images.first!
-            self.imgGroupIcon.image = self.groupIcon!.circleMasked
-            self.btnEditAvatar.isHidden = false
-        }
-        
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        print("yes")
     }
     
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print("yes")
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        print("yes")
     }
 
 }

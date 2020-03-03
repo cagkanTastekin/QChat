@@ -10,9 +10,9 @@
 
 import UIKit
 import ProgressHUD
-import ImagePicker
+import Gallery
 
-class GroupViewCont: UIViewController, ImagePickerDelegate {
+class GroupViewCont: UIViewController, GalleryControllerDelegate {
     
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var txtGroupName: UITextField!
@@ -89,11 +89,10 @@ class GroupViewCont: UIViewController, ImagePickerDelegate {
     func showIconOptions() {
         let optionMenu = UIAlertController(title: "Choose group icon", message: nil, preferredStyle: .actionSheet)
         let takePhotoAction = UIAlertAction(title: "Take/Choose Photo", style: .default) { (alert) in
-            let imagePickerController = ImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.imageLimit = 1
+            let gallery = GalleryController()
+            gallery.delegate = self
             
-            self.present(imagePickerController, animated: true, completion: nil)
+            self.present(gallery, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in}
         
@@ -111,26 +110,20 @@ class GroupViewCont: UIViewController, ImagePickerDelegate {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    // MARK: Image Picker Delegate
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.dismiss(animated: true, completion: nil)
+    // MARK: Gallery Delegate
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        print("yes")
     }
     
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        
-        if images.count > 0 {
-            self.groupIcon = images.first!
-            self.imgAvatar.image = self.groupIcon?.circleMasked
-            self.btnEdit.isHidden = false
-        }
-        
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        print("yes")
     }
     
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print("yes")
     }
     
-
-    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        print("yes")
+    }
 }

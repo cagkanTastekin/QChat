@@ -11,9 +11,9 @@
 import UIKit
 import ProgressHUD
 import MaterialTextField
-import ImagePicker
+import Gallery
 
-class RegistrationViewCont: UIViewController, ImagePickerDelegate {
+class RegistrationViewCont: UIViewController, GalleryControllerDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var btnCancel: UIButton!
@@ -93,11 +93,10 @@ class RegistrationViewCont: UIViewController, ImagePickerDelegate {
     
     
     @IBAction func tappedAvatar(_ sender: Any) {
-        let imagePickerController = ImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.imageLimit = 1
+        let gallery = GalleryController()
+        gallery.delegate = self
         
-        present(imagePickerController, animated: true, completion: nil)
+        self.present(gallery, animated: true, completion: nil)
         dismissKeyboard()
     }
     
@@ -199,25 +198,22 @@ class RegistrationViewCont: UIViewController, ImagePickerDelegate {
         txtField.leftView = leftImageView
         txtField.leftViewMode = .always
     }
-    
-    // MARK: Image Picket Delegate
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        
-        if images.count > 0 {
-            self.avatarImage = images.first!
-            self.imgAvatar.image = self.avatarImage?.circleMasked
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 
+    // MARK: Gallery Delegate
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        print("yes")
+    }
+    
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        print("yes")
+    }
+    
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        print("yes")
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        print("yes")
+    }
+    
 }
